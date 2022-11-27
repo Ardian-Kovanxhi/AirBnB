@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Spot.belongsTo(models.User, { foreignKey: 'ownerId' })
+      Spot.belongsTo(models.User, { foreignKey: 'ownerId', as: "Owner" })
       Spot.hasMany(models.SpotImage, { foreignKey: 'spotId' })
       Spot.hasMany(models.Booking, { foreignKey: 'spotId' })
       Spot.hasMany(models.Review, { foreignKey: 'spotId' })
@@ -58,9 +58,40 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DECIMAL,
       allowNull: false
     },
+    numReviews: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 0
+    },
+    avgStarRating: {
+      type: DataTypes.DECIMAL,
+      allowNull: false,
+      defaultValue: 0
+    },
+    previewImage: {
+      type: DataTypes.STRING,
+      defaultValue: null
+    }
   }, {
     sequelize,
     modelName: 'Spot',
+    defaultScope: {
+      attributes: {
+        exclude: ['numReviews']
+      }
+    },
+    scopes: {
+      spotCreation: {
+        attributes: {
+          exclude: ['numReviews', 'avgStarRating', 'previewImage']
+        }
+      },
+      spotDetails: {
+        attributes: {
+          exclude: ['previewImage']
+        }
+      }
+    }
   });
   return Spot;
 };

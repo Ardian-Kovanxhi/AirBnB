@@ -29,7 +29,10 @@ module.exports = {
         lng: 8.5,
         name: 'House1',
         description: 'desc1 blah blah blah',
-        price: 123.11
+        price: 123.11,
+        numReviews: 5,
+        avgStarRating: 3.5,
+        previewImage: 'image url'
       },
       {
         ownerId: 2,
@@ -41,7 +44,10 @@ module.exports = {
         lng: 8.5,
         name: 'House2',
         description: 'desc2 blah blah blah',
-        price: 123.11
+        price: 123.11,
+        numReviews: 6,
+        avgStarRating: 2,
+        previewImage: 'image url'
       },
       {
         ownerId: 3,
@@ -53,7 +59,10 @@ module.exports = {
         lng: 8.5,
         name: 'House3',
         description: 'desc3 blah blah blah',
-        price: 123.11
+        price: 123.11,
+        numReviews: 5,
+        avgStarRating: 3.5,
+        previewImage: 'image url'
       },
     ], {});
   },
