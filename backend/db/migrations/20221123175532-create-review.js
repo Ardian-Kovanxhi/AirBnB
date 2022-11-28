@@ -1,5 +1,7 @@
 'use strict';
 
+const review = require("../models/review");
+
 let options = {};
 if (process.env.NODE_ENV === 'production') {
   options.schema = process.env.SCHEMA;  // define your schema in options object
@@ -43,6 +45,12 @@ module.exports = {
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       }
     }, options);
+
+    await queryInterface.addIndex(
+      'Reviews',
+      ['userId', 'review'],
+      { unique: true }
+    )
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('Reviews', options);

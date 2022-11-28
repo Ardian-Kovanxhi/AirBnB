@@ -1,6 +1,6 @@
 const express = require('express');
 
-const { Spot, SpotImage, User } = require('../../db/models');
+const { Spot, SpotImage, User, Review } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
 const { check } = require('express-validator');
 const { handleSpotValidationErrors } = require('../../utils/validation');
@@ -116,7 +116,7 @@ router.get('/:spotId', async (req, res) => {
     const spot = await Spot.scope("spotDetails").findByPk(spotId, {
         include: [
             { model: SpotImage, attributes: ['id', 'url', 'preview'] },
-            { model: User, as: 'Owner', attributes: ['id', 'firstName', 'lastName'] },
+            { model: User, as: 'Owner', attributes: ['id', 'firstName', 'lastName'] }
         ]
     });
 
@@ -131,7 +131,6 @@ router.get('/:spotId', async (req, res) => {
 //PUT /api/spots/:spotId
 router.put('/:spotId', requireAuth, async (req, res) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
-    const userId = req.user.id;
 
     const spot = await Spot.findByPk(req.params.spotId);
 
@@ -149,12 +148,64 @@ router.put('/:spotId', requireAuth, async (req, res) => {
     spot.name = name
     spot.description = description
     spot.price = price
-    spot.save();
+    await spot.save();
 
 
     const scoped = await Spot.scope("spotCreation").findByPk(spot.id)
 
     return res.json(scoped);
+})
+
+
+//Auth false
+//GET /api/spots/:spotId/reviews | Get reviews of a spot
+router.get('/:spotId/reviews', async (req, res) => {
+    const spotId = +req.params.spotId;
+
+    const spot = await Spot.findByPk(spotId);
+
+    if (!spot) {
+        res.statusCode = 404;
+        return res.json({ message: "Spot couldn't be found", statusCode: 404 })
+    }
+
+    const reviews = await Review.findAll({ where: { spotId } })
+
+    return res.json(reviews);
+})
+
+//Auth true
+//POST /api/spots/:spotId/reviews | Make a review for a spot
+router.post('/:spotId/reviews', requireAuth, async (req, res) => {
+    const { review, stars } = req.body;
+    const userId = req.user.id;
+    const user = await User.findByPk(userId)
+    const spot = await Spot.findByPk(req.params.spotId);
+
+    if (!spot) {
+        res.statusCode = 404;
+        return res.json({ message: "Spot couldn't be found", statusCode: 404 });
+    }
+
+    if (!user) {
+        res.statusCode = 404;
+        return res.json({ message: "User couldn't be found", statusCode: 404 });
+    }
+
+    const newReview = await Review.create({
+        spotId: +req.params.spotId,
+        userId,
+        review,
+        stars
+    })
+
+    // spot.numReviews++
+    // const average = ((spot.avgStarRating * spot.numReviews) + stars) / spot.numReviews
+    // spot.avgStarRating = average
+    // spot.save();
+
+    res.statusCode = 201;
+    res.json(newReview);
 })
 
 
