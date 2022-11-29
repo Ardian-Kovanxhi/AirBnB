@@ -18,26 +18,26 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    // return queryInterface.bulkInsert(options, [
-    //   {
-    //     spotId: 1,
-    //     userId: 1,
-    //     startDate: '2021-12-25',
-    //     endDate: '2021-12-27'
-    //   },
-    //   {
-    //     spotId: 2,
-    //     userId: 2,
-    //     startDate: '2021-12-28',
-    //     endDate: '2021-12-29'
-    //   },
-    //   {
-    //     spotId: 3,
-    //     userId: 3,
-    //     startDate: '2021-12-30',
-    //     endDate: '2021-12-31'
-    //   },
-    // ], {});
+    return queryInterface.bulkInsert(options, [
+      {
+        spotId: 1,
+        userId: 1,
+        startDate: '2021-12-25',
+        endDate: '2021-12-27'
+      },
+      {
+        spotId: 2,
+        userId: 2,
+        startDate: '2021-12-28',
+        endDate: '2021-12-29'
+      },
+      {
+        spotId: 3,
+        userId: 3,
+        startDate: '2021-12-30',
+        endDate: '2021-12-31'
+      },
+    ], {});
   },
 
   async down(queryInterface, Sequelize) {
@@ -47,7 +47,7 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    // const Op = Sequelize.Op;
-    // return queryInterface.bulkDelete(options, {});
+    const Op = Sequelize.Op;
+    return queryInterface.bulkDelete(options, {});
   }
 };

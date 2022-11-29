@@ -18,53 +18,53 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    // return queryInterface.bulkInsert(options, [
-    //   {
-    //     ownerId: 1,
-    //     address: 'TestA1',
-    //     city: 'TestC1',
-    //     state: 'NJ',
-    //     country: 'USA',
-    //     lat: 4.1,
-    //     lng: 8.5,
-    //     name: 'House1',
-    //     description: 'desc1 blah blah blah',
-    //     price: 123.11,
-    //     numReviews: 5,
-    //     avgStarRating: 3.5,
-    //     previewImage: 'image url'
-    //   },
-    //   {
-    //     ownerId: 2,
-    //     address: 'TestA2',
-    //     city: 'TestC2',
-    //     state: 'NJ',
-    //     country: 'USA',
-    //     lat: 4.1,
-    //     lng: 8.5,
-    //     name: 'House2',
-    //     description: 'desc2 blah blah blah',
-    //     price: 123.11,
-    //     numReviews: 6,
-    //     avgStarRating: 2,
-    //     previewImage: 'image url'
-    //   },
-    //   {
-    //     ownerId: 3,
-    //     address: 'TestA3',
-    //     city: 'TestC3',
-    //     state: 'NJ',
-    //     country: 'USA',
-    //     lat: 4.1,
-    //     lng: 8.5,
-    //     name: 'House3',
-    //     description: 'desc3 blah blah blah',
-    //     price: 123.11,
-    //     numReviews: 5,
-    //     avgStarRating: 3.5,
-    //     previewImage: 'image url'
-    //   },
-    // ], {});
+    return queryInterface.bulkInsert(options, [
+      {
+        ownerId: 1,
+        address: 'TestA1',
+        city: 'TestC1',
+        state: 'NJ',
+        country: 'USA',
+        lat: 4.1,
+        lng: 8.5,
+        name: 'House1',
+        description: 'desc1 blah blah blah',
+        price: 123.11,
+        numReviews: 5,
+        avgStarRating: 3.5,
+        previewImage: 'image url'
+      },
+      {
+        ownerId: 2,
+        address: 'TestA2',
+        city: 'TestC2',
+        state: 'NJ',
+        country: 'USA',
+        lat: 4.1,
+        lng: 8.5,
+        name: 'House2',
+        description: 'desc2 blah blah blah',
+        price: 123.11,
+        numReviews: 6,
+        avgStarRating: 2,
+        previewImage: 'image url'
+      },
+      {
+        ownerId: 3,
+        address: 'TestA3',
+        city: 'TestC3',
+        state: 'NJ',
+        country: 'USA',
+        lat: 4.1,
+        lng: 8.5,
+        name: 'House3',
+        description: 'desc3 blah blah blah',
+        price: 123.11,
+        numReviews: 5,
+        avgStarRating: 3.5,
+        previewImage: 'image url'
+      },
+    ], {});
   },
 
   async down(queryInterface, Sequelize) {
@@ -75,7 +75,7 @@ module.exports = {
      * await queryInterface.bulkDelete('People', null, {});
      */
 
-    // const Op = Sequelize.Op;
-    // return queryInterface.bulkDelete(options, {});
+    const Op = Sequelize.Op;
+    return queryInterface.bulkDelete(options, {});
   }
 };

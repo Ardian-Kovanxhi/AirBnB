@@ -18,20 +18,20 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    // return queryInterface.bulkInsert(options, [
-    //   {
-    //     reviewId: 1,
-    //     url: 'sampleURLrev1.com'
-    //   },
-    //   {
-    //     reviewId: 2,
-    //     url: 'sampleURLrev2.com'
-    //   },
-    //   {
-    //     reviewId: 3,
-    //     url: 'sampleURLrev3.com'
-    //   },
-    // ], {});
+    return queryInterface.bulkInsert(options, [
+      {
+        reviewId: 1,
+        url: 'sampleURLrev1.com'
+      },
+      {
+        reviewId: 2,
+        url: 'sampleURLrev2.com'
+      },
+      {
+        reviewId: 3,
+        url: 'sampleURLrev3.com'
+      },
+    ], {});
   },
 
   async down(queryInterface, Sequelize) {
@@ -41,7 +41,7 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    // const Op = Sequelize.Op;
-    // return queryInterface.bulkDelete(options, {});
+    const Op = Sequelize.Op;
+    return queryInterface.bulkDelete(options, {});
   }
 };
