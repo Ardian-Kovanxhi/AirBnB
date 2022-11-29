@@ -18,23 +18,23 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    return queryInterface.bulkInsert(options, [
-      {
-        spotId: 1,
-        url: 'sampleURL1.com',
-        preview: true
-      },
-      {
-        spotId: 2,
-        url: 'sampleURL2.com',
-        preview: false
-      },
-      {
-        spotId: 3,
-        url: 'sampleURL3.com',
-        preview: true
-      },
-    ], {});
+    // return queryInterface.bulkInsert(options, [
+    //   {
+    //     spotId: 1,
+    //     url: 'sampleURL1.com',
+    //     preview: true
+    //   },
+    //   {
+    //     spotId: 2,
+    //     url: 'sampleURL2.com',
+    //     preview: false
+    //   },
+    //   {
+    //     spotId: 3,
+    //     url: 'sampleURL3.com',
+    //     preview: true
+    //   },
+    // ], {});
   },
 
   async down(queryInterface, Sequelize) {
@@ -44,7 +44,7 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    const Op = Sequelize.Op;
-    return queryInterface.bulkDelete(options, {});
+    // const Op = Sequelize.Op;
+    // return queryInterface.bulkDelete(options, {});
   }
 };
