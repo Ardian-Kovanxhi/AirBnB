@@ -40,12 +40,6 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Review',
-    indexes: [
-      {
-        unique: true,
-        fields: ['userId', 'review']
-      }
-    ]
   });
   return Review;
 };
