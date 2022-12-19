@@ -47,7 +47,7 @@ export default function spotsReducer(state = initialState, action) {
         }
         case READ_SPOT: {
             const newState = { ...state, singleSpot: {} }
-            newState.singleSpot = action.song
+            newState.singleSpot = action.spot
             return newState
         }
         default:
