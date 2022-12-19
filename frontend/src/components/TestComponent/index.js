@@ -42,7 +42,7 @@ export default function TestButton() {
                 })}
             </div>
             <div>
-                <h1>Single Spot</h1>
+                <h1>Single Spot (hard coded to pull a certain spot, not url based)</h1>
                 <div>
                     {sessionSpot.name}
                 </div>

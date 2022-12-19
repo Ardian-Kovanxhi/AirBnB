@@ -14,6 +14,7 @@ function App() {
 
   return (
     <>
+      <h1>This is incredibly incomplete (I talked to Alex to explain already). This is the only functionality I was able to set up</h1>
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
