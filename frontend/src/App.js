@@ -4,6 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import HomeSpots from "./components/Spots/AllSpots";
+import SelectedSpot from "./components/Spots/SingleSpot";
 
 function App() {
   const dispatch = useDispatch();
@@ -18,6 +19,7 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path={'/'} component={HomeSpots} />
+          <Route path={'/:spotId'} component={SelectedSpot} />
           <Route>It works</Route>
         </Switch>
       )}

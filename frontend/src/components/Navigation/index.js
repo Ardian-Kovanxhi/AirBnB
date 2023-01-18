@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import OpenModalButton from '../OpenModalButton';
@@ -9,6 +9,7 @@ import './Navigation.css';
 
 function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
+    const history = useHistory();
 
     let sessionLinks;
     if (sessionUser) {
@@ -19,7 +20,7 @@ function Navigation({ isLoaded }) {
         );
     } else {
         sessionLinks = (
-            <li>
+            <div>
                 <OpenModalButton
                     buttonText="Log In"
                     modalComponent={<LoginFormModal />}
@@ -28,17 +29,23 @@ function Navigation({ isLoaded }) {
                     buttonText="Sign Up"
                     modalComponent={<SignupFormModal />}
                 />
-            </li>
+            </div>
         );
     }
 
     return (
-        <ul>
-            <li>
-                <NavLink exact to="/">Home</NavLink>
-            </li>
+        <div className='top-nav-bar'>
+            <div
+                className='BnB-title'
+                onClick={() => history.push('/')}
+            >
+                <img className='eagle-icon' src='https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Albanian_Eagle.svg/1200px-Albanian_Eagle.svg.png' />
+                <h2>
+                    ArdianBnB
+                </h2>
+            </div>
             {isLoaded && sessionLinks}
-        </ul>
+        </div>
     );
 }
 

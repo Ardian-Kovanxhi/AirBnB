@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
+import OpenModalButton from '../OpenModalButton';
+import SignupFormModal from '../SignupFormModal';
 import "./LoginForm.css";
 
 function LoginFormModal() {

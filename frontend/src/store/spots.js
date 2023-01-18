@@ -9,7 +9,7 @@ const readSpots = (spots) => {
         spots
     }
 }
-const readSpot = spot => {
+const readSpot = (spot) => {
     return {
         type: READ_SPOT,
         spot
@@ -26,8 +26,8 @@ export const getSpots = () => async dispatch => {
         return spots
     }
 }
-export const getSpot = () => async dispatch => {
-    const response = await csrfFetch('/api/spots/1')
+export const getSpot = (spotId) => async dispatch => {
+    const response = await csrfFetch(`/api/spots/${spotId}`)
 
     if (response.ok) {
         const spot = await response.json();
