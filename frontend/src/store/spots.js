@@ -27,7 +27,7 @@ export const getSpots = () => async dispatch => {
     }
 }
 export const getSpot = () => async dispatch => {
-    const response = await csrfFetch('/api/spots/9')
+    const response = await csrfFetch('/api/spots/1')
 
     if (response.ok) {
         const spot = await response.json();
