@@ -18,6 +18,10 @@ export default function SelectedSpot() {
     const Spot = useSelector(state => state.spots.singleSpot);
     const User = useSelector(state => state.session.user)
 
+    const spotImgs = Spot.SpotImages
+
+    console.log(Spot)
+
 
 
     return (

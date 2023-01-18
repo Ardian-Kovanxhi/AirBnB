@@ -5,6 +5,7 @@ import ProfileButton from './ProfileButton';
 import OpenModalButton from '../OpenModalButton';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
+import logo from '../../images/mogusBnB.png'
 import './Navigation.css';
 
 function Navigation({ isLoaded }) {
@@ -14,9 +15,12 @@ function Navigation({ isLoaded }) {
     let sessionLinks;
     if (sessionUser) {
         sessionLinks = (
-            <li>
-                <ProfileButton user={sessionUser} />
-            </li>
+            <div>
+                <button onClick={() => history.push('/pHolder')}>Create Spot</button>
+                <li>
+                    <ProfileButton user={sessionUser} />
+                </li>
+            </div>
         );
     } else {
         sessionLinks = (
@@ -39,7 +43,8 @@ function Navigation({ isLoaded }) {
                 className='BnB-title'
                 onClick={() => history.push('/')}
             >
-                <img className='eagle-icon' src='https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Albanian_Eagle.svg/1200px-Albanian_Eagle.svg.png' />
+                {/* <img className='eagle-icon' src='https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Albanian_Eagle.svg/1200px-Albanian_Eagle.svg.png' /> */}
+                <img className='mogus-icon' src={logo} />
                 <h2>
                     ArdianBnB
                 </h2>

@@ -5,6 +5,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import HomeSpots from "./components/Spots/AllSpots";
 import SelectedSpot from "./components/Spots/SingleSpot";
+import SpotCreation from "./components/SpotFormPage/SpotForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path={'/'} component={HomeSpots} />
+          <Route path={'/pHolder'} component={SpotCreation} />
           <Route path={'/:spotId'} component={SelectedSpot} />
           <Route>It works</Route>
         </Switch>

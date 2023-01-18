@@ -1,7 +1,11 @@
+import Cookies from "js-cookie";
 import { csrfFetch } from "./csrf";
+
 
 const READ_SPOTS = 'spots/READ_SPOTS'
 const READ_SPOT = 'spot/READ_SPOT'
+const CREATE_SPOT = 'spot/CREATE_SPOT'
+
 
 const readSpots = (spots) => {
     return {
@@ -15,6 +19,15 @@ const readSpot = (spot) => {
         spot
     }
 }
+
+const createSpot = (spot) => {
+    return {
+        type: CREATE_SPOT,
+        spot
+    }
+}
+
+
 
 
 export const getSpots = () => async dispatch => {
@@ -36,6 +49,28 @@ export const getSpot = (spotId) => async dispatch => {
     }
 }
 
+export const submitSpot = (data) => async dispatch => {
+    const response = await csrfFetch(
+        '/api/spots',
+        {
+            method: 'POST',
+            header: {
+                'Content-Type': 'application/json',
+                'XSRF-Token': Cookies.get('XSRF-TOKEN')
+            },
+            body: JSON.stringify(data)
+        }
+    )
+
+    if (response.ok) {
+        const spot = await response.json();
+        dispatch(createSpot(spot))
+        return spot
+    }
+}
+
+
+
 const initialState = { allSpots: {}, singleSpot: {} }
 
 export default function spotsReducer(state = initialState, action) {
@@ -46,6 +81,11 @@ export default function spotsReducer(state = initialState, action) {
             return newState
         }
         case READ_SPOT: {
+            const newState = { ...state, singleSpot: {} }
+            newState.singleSpot = action.spot
+            return newState
+        }
+        case CREATE_SPOT: {
             const newState = { ...state, singleSpot: {} }
             newState.singleSpot = action.spot
             return newState
