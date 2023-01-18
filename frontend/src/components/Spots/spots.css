@@ -12,11 +12,12 @@
     margin: 5px;
     background-color: antiquewhite;
     flex-direction: column-reverse;
-    align-items: center;
+    align-items: baseline;
 }
 
 .home-spots-info-div {
     display: flex;
+    flex-direction: column;
 }
 
 .home-preview-img {
