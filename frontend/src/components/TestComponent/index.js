@@ -18,7 +18,7 @@ export default function TestButton() {
 
     console.log(useParams())
     return (
-        <>
+        <div>
             <div>
                 <h1>All Spots</h1>
                 {Object.values(sessionSpots).map(spot => {
@@ -28,15 +28,15 @@ export default function TestButton() {
                                 {spot.id}: {spot.name}
                             </div>
                             <div>
-                                {spot.address}
+                                address: {spot.address}
                             </div>
                             <div>
-                                ${spot.price}
+                                price: ${spot.price}
                             </div>
                             <div>
-                                {spot.previewImage}
+                                img url: {spot.previewImage}
                             </div>
-                            <img src='https://cdn.theatlantic.com/media/mt/science/cat_caviar.jpg' />
+                            <img src={`${spot.previewImage}`} />
                         </>
                     )
                 })}
@@ -44,7 +44,7 @@ export default function TestButton() {
             <div>
                 <h1>Single Spot (hard coded to pull a certain spot, not url based)</h1>
                 <div>
-                    {sessionSpot.name}
+                    name: {sessionSpot.name}
                 </div>
                 <div>
                     lat: {sessionSpot.lat}
@@ -53,11 +53,10 @@ export default function TestButton() {
                     lng: {sessionSpot.lng}
                 </div>
                 <img src='https://pbs.twimg.com/media/Dk-5pO2VsAAaShu?format=jpg&name=small' />
-                <img src='https://i2.wp.com/creapills.com/wp-content/uploads/2018/03/30-photos-absurdes-banques-dimages-23.jpg?resize=800%2C536&ssl=1' />
             </div>
 
 
 
-        </>
+        </div>
     )
 }

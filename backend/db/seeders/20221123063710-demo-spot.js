@@ -32,7 +32,7 @@ module.exports = {
         price: 123.11,
         numReviews: 5,
         avgStarRating: 3.5,
-        previewImage: 'image url'
+        previewImage: 'https://cdn.theatlantic.com/media/mt/science/cat_caviar.jpg'
       },
       {
         ownerId: 2,
@@ -47,7 +47,7 @@ module.exports = {
         price: 123.11,
         numReviews: 6,
         avgStarRating: 2,
-        previewImage: 'image url'
+        previewImage: 'https://cdn.theatlantic.com/media/mt/science/cat_caviar.jpg'
       },
       {
         ownerId: 3,
@@ -62,7 +62,7 @@ module.exports = {
         price: 123.11,
         numReviews: 5,
         avgStarRating: 3.5,
-        previewImage: 'image url'
+        previewImage: 'https://cdn.theatlantic.com/media/mt/science/cat_caviar.jpg'
       },
     ], {});
   },
