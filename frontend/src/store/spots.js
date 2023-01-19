@@ -62,7 +62,8 @@ export const submitSpot = (data) => async dispatch => {
         lng,
         name,
         description,
-        price
+        price,
+        url
 
     } = data
 
@@ -76,6 +77,52 @@ export const submitSpot = (data) => async dispatch => {
             },
             body: JSON.stringify({
                 ownerId,
+                address,
+                city,
+                state,
+                country,
+                lat,
+                lng,
+                name,
+                description,
+                price
+            })
+        }
+    )
+
+
+
+
+    const spot = await response.json();
+    dispatch(readSpot(spot))
+    return spot
+}
+
+export const editSpot = (spotId, data) => async dispatch => {
+
+    const {
+
+        address,
+        city,
+        state,
+        country,
+        lat,
+        lng,
+        name,
+        description,
+        price
+
+    } = data
+
+    const response = await csrfFetch(
+        `/api/spots/${spotId}`,
+        {
+            method: 'PUT',
+            header: {
+                'Content-Type': 'application/json',
+                'XSRF-Token': Cookies.get('XSRF-TOKEN')
+            },
+            body: JSON.stringify({
                 address,
                 city,
                 state,

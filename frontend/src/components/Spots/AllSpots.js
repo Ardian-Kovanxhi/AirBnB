@@ -35,7 +35,13 @@ export default function HomeSpots() {
                                 Price: ${spot.price}
                             </div>
                         </div>
-                        <img className='home-preview-img' src={spot.previewImage} />
+                        <img
+                            className='home-preview-img'
+                            src={
+                                spot.previewImage ||
+                                'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'
+                            }
+                        />
                     </div>
                 )
             })}

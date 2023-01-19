@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { submitSpot } from "../../store/spots";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import './spotForm.css'
 
 /*
@@ -215,6 +215,11 @@ export default function SpotCreation() {
                 disabled={!!errors.length}
             >
                 Submit
+            </button>
+            <button
+                onClick={() => history.push('/')}
+            >
+                Cancel
             </button>
 
         </form>

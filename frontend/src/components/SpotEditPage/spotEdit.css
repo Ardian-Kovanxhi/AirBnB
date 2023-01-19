@@ -1,10 +1,10 @@
-.spot-form {
+.spot-edit-from {
     display: flex;
     flex-direction: column;
     width: 25%;
 }
 
-#spot-form-entry-divs {
+#spot-edit-form-entry-divs {
     display: grid;
     grid-template-columns: 30% 60%;
 }

@@ -1,16 +1,18 @@
 import React from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import OpenModalButton from '../OpenModalButton';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
+import { demoUserLogin } from '../../store/session';
 import logo from '../../images/mogusBnB.png'
 import './Navigation.css';
 
 function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
     const history = useHistory();
+    const dispatch = useDispatch();
 
     let sessionLinks;
     if (sessionUser) {
@@ -33,6 +35,11 @@ function Navigation({ isLoaded }) {
                     buttonText="Sign Up"
                     modalComponent={<SignupFormModal />}
                 />
+                <button
+                    onClick={() => dispatch(demoUserLogin())}
+                >
+                    Demo User
+                </button>
             </div>
         );
     }
@@ -43,7 +50,6 @@ function Navigation({ isLoaded }) {
                 className='BnB-title'
                 onClick={() => history.push('/')}
             >
-                {/* <img className='eagle-icon' src='https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Albanian_Eagle.svg/1200px-Albanian_Eagle.svg.png' /> */}
                 <img className='mogus-icon' src={logo} />
                 <h2>
                     ArdianBnB

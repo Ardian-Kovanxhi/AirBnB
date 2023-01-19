@@ -63,7 +63,9 @@ export default function SelectedSpot() {
                         User.id === Spot.ownerId ?
 
                             <div>
-                                <button>
+                                <button
+                                    onClick={() => history.push(`/${spotId}/edit`)}
+                                >
                                     Edit Spot
                                 </button>
                                 <button
