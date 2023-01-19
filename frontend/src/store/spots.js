@@ -4,7 +4,7 @@ import { csrfFetch } from "./csrf";
 
 const READ_SPOTS = 'spots/READ_SPOTS'
 const READ_SPOT = 'spot/READ_SPOT'
-const CREATE_SPOT = 'spot/CREATE_SPOT'
+const DELETE_SPOT = 'spot/DELETE_SPOT'
 
 
 const readSpots = (spots) => {
@@ -20,12 +20,12 @@ const readSpot = (spot) => {
     }
 }
 
-const createSpot = (spot) => {
+const deleteSpot = () => {
     return {
-        type: CREATE_SPOT,
-        spot
+        type: DELETE_SPOT
     }
 }
+
 
 
 
@@ -50,6 +50,22 @@ export const getSpot = (spotId) => async dispatch => {
 }
 
 export const submitSpot = (data) => async dispatch => {
+
+    const {
+
+        ownerId,
+        address,
+        city,
+        state,
+        country,
+        lat,
+        lng,
+        name,
+        description,
+        price
+
+    } = data
+
     const response = await csrfFetch(
         '/api/spots',
         {
@@ -58,36 +74,55 @@ export const submitSpot = (data) => async dispatch => {
                 'Content-Type': 'application/json',
                 'XSRF-Token': Cookies.get('XSRF-TOKEN')
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify({
+                ownerId,
+                address,
+                city,
+                state,
+                country,
+                lat,
+                lng,
+                name,
+                description,
+                price
+            })
         }
     )
 
-    if (response.ok) {
-        const spot = await response.json();
-        dispatch(createSpot(spot))
-        return spot
-    }
+
+    const spot = await response.json();
+    dispatch(readSpot(spot))
+    return spot
 }
+
+export const removeSpot = (spotId) => async dispatch => {
+    const response = await csrfFetch(`/api/spots/${spotId}`, {
+        method: 'DELETE',
+    });
+    dispatch(deleteSpot()); // deleteSpot action needed
+    return response;
+};
 
 
 
 const initialState = { allSpots: {}, singleSpot: {} }
 
 export default function spotsReducer(state = initialState, action) {
+    let newState;
     switch (action.type) {
         case READ_SPOTS: {
-            const newState = { allSpots: {}, singleSpot: {} }
+            newState = { allSpots: {}, singleSpot: {} }
             action.spots.forEach(spot => newState.allSpots[spot.id] = spot);
             return newState
         }
         case READ_SPOT: {
-            const newState = { ...state, singleSpot: {} }
+            newState = { ...state, singleSpot: {} }
             newState.singleSpot = action.spot
             return newState
         }
-        case CREATE_SPOT: {
-            const newState = { ...state, singleSpot: {} }
-            newState.singleSpot = action.spot
+        case DELETE_SPOT: {
+            newState = { ...state }
+            newState.singleSpot = {};
             return newState
         }
         default:

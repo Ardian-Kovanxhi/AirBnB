@@ -1,13 +1,16 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { getSpot } from '../../store/spots';
+import { removeSpot } from "../../store/spots";
 import OpenModalButton from '../OpenModalButton';
 import LoginFormModal from '../LoginFormModal';
+import './spots.css'
 
 
 export default function SelectedSpot() {
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const { spotId } = useParams();
 
@@ -18,9 +21,18 @@ export default function SelectedSpot() {
     const Spot = useSelector(state => state.spots.singleSpot);
     const User = useSelector(state => state.session.user)
 
-    const spotImgs = Spot.SpotImages
 
-    console.log(Spot)
+    const spotImgs = []
+
+
+    if (Spot.SpotImages) {
+        spotImgs.push(...Spot.SpotImages)
+    }
+
+    const deleteHandler = (e) => {
+        dispatch(removeSpot(spotId));
+        history.push('/')
+    }
 
 
 
@@ -39,22 +51,34 @@ export default function SelectedSpot() {
                 <div>
                     {Spot.city}, {Spot.state}, {Spot.country}
                 </div>
+                {
+                    spotImgs.map(el => (
+                        <img className="single-spot-img" src={el.url} />
+                    ))
+                }
             </div>
             <div>
                 {
                     User ?
                         User.id === Spot.ownerId ?
 
-                            <button>
-                                Edit Spot
-                            </button> :
+                            <div>
+                                <button>
+                                    Edit Spot
+                                </button>
+                                <button
+                                    onClick={deleteHandler}
+                                >
+                                    Delete Spot
+                                </button>
+                            </div> :
 
                             <button>
-                                Reserve
+                                Review
                             </button> :
 
                         <OpenModalButton
-                            buttonText='Reserve'
+                            buttonText='Review'
                             modalComponent={<LoginFormModal />}
                         />
                 }
