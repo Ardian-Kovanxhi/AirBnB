@@ -69,7 +69,7 @@ export const submitSpot = (data) => async dispatch => {
 
         const spot = await response.json();
 
-        await csrfFetch(
+        const images = await csrfFetch(
             `/api/spots/${spot.id}/images`,
             {
                 method: 'POST',
@@ -84,6 +84,8 @@ export const submitSpot = (data) => async dispatch => {
                 })
             }
         )
+
+        // console.log(spot)
 
         dispatch(readSpot(spot))
         return spot
@@ -138,8 +140,10 @@ export const removeSpot = (spotId) => async dispatch => {
     const response = await csrfFetch(`/api/spots/${spotId}`, {
         method: 'DELETE',
     });
-    dispatch(deleteSpot()); // deleteSpot action needed
-    return response;
+    if (response.ok) {
+        await dispatch(deleteSpot());
+        return response;
+    }
 };
 
 
@@ -162,6 +166,9 @@ export default function spotsReducer(state = initialState, action) {
         case DELETE_SPOT: {
             newState = { ...state }
             newState.singleSpot = {};
+            if (newState.allSpots[action.spot.id]) {
+                delete newState.allSpots[action.spot.id]
+            }
             return newState
         }
         default:

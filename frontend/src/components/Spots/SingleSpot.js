@@ -37,26 +37,44 @@ export default function SelectedSpot() {
 
 
     return (
-        <div>
-            <div className="selected-spot-name">
-                {Spot.name}
+        <div className="single-spot-div">
+
+            {
+                spotImgs.map(el => {
+                    if (el.preview === true) {
+                        return (
+                            <img className="single-spot-img-preview" src={el.url} />
+                        )
+                    }
+                    else {
+                        return (
+                            <img className="single-spot-gen-img" src={
+                                el.url ||
+                                'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'
+                            } />
+                        )
+                    }
+                })
+            }
+            <div className="single-spot-info-name-div">
+
+                <div className="selected-spot-name">
+                    {Spot.name}
+                </div>
+                <div className="selected-spot-info-div">
+                    <div>
+                        {Spot.avgStarRating}
+                    </div>
+                    <div>
+                        {Spot.numReviews} reviews
+                    </div>
+                    <div>
+                        {Spot.city}, {Spot.state}, {Spot.country}
+                    </div>
+                </div>
+
             </div>
-            <div className="selected-spot-info-div">
-                <div>
-                    {Spot.avgStarRating}
-                </div>
-                <div>
-                    {Spot.numReviews} reviews
-                </div>
-                <div>
-                    {Spot.city}, {Spot.state}, {Spot.country}
-                </div>
-                {
-                    spotImgs.map(el => (
-                        <img className="single-spot-img" src={el.url} />
-                    ))
-                }
-            </div>
+
             <div>
                 {
                     User ?
