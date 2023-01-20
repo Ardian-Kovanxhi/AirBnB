@@ -18,7 +18,7 @@ function Navigation({ isLoaded }) {
     if (sessionUser) {
         sessionLinks = (
             <div>
-                <button onClick={() => history.push('/pHolder')}>Create Spot</button>
+                <button onClick={() => history.push('/create-spot')}>Create Spot</button>
                 <li>
                     <ProfileButton user={sessionUser} />
                 </li>

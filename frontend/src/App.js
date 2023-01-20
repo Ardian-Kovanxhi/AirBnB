@@ -21,7 +21,7 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path={'/'} component={HomeSpots} />
-          <Route path={'/pHolder'} component={SpotCreation} />
+          <Route path={'/create-spot'} component={SpotCreation} />
           <Route path={'/:spotId/edit'} component={SpotEditor} />
           <Route path={'/:spotId'} component={SelectedSpot} />
           <Route>It works</Route>

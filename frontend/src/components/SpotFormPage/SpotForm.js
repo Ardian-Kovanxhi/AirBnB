@@ -30,6 +30,7 @@ export default function SpotCreation() {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState(1);
+    const [url, setUrl] = useState('');
     const [errors, setErrors] = useState([]);
 
 
@@ -60,7 +61,7 @@ export default function SpotCreation() {
     const submitHandler = (e) => {
         e.preventDefault();
 
-        dispatch(submitSpot({
+        const test = dispatch(submitSpot({
             ownerId: sessionUser.id,
             address,
             city,
@@ -70,19 +71,9 @@ export default function SpotCreation() {
             lng,
             name,
             description,
-            price
+            price,
+            url
         }))
-
-
-        setAddress('');
-        setCity('');
-        setState('');
-        setCountry('');
-        setLat(0);
-        setLng(0);
-        setName('');
-        setDescription('');
-        setPrice(1);
 
         history.push('/')
     }
@@ -206,6 +197,18 @@ export default function SpotCreation() {
                     type="number"
                     onChange={(e) => setPrice(e.target.value)}
                     value={price}
+                    required
+                />
+            </div>
+
+            <div id='spot-form-entry-divs'>
+                <label>
+                    {'URL: '}
+                </label>
+                <input
+                    type="url"
+                    onChange={(e) => setUrl(e.target.value)}
+                    value={url}
                     required
                 />
             </div>

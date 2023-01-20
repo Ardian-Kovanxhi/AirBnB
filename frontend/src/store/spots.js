@@ -51,21 +51,7 @@ export const getSpot = (spotId) => async dispatch => {
 
 export const submitSpot = (data) => async dispatch => {
 
-    const {
-
-        ownerId,
-        address,
-        city,
-        state,
-        country,
-        lat,
-        lng,
-        name,
-        description,
-        price,
-        url
-
-    } = data
+    const { ownerId, address, city, state, country, lat, lng, name, description, price, url } = data
 
     const response = await csrfFetch(
         '/api/spots',
@@ -75,27 +61,33 @@ export const submitSpot = (data) => async dispatch => {
                 'Content-Type': 'application/json',
                 'XSRF-Token': Cookies.get('XSRF-TOKEN')
             },
-            body: JSON.stringify({
-                ownerId,
-                address,
-                city,
-                state,
-                country,
-                lat,
-                lng,
-                name,
-                description,
-                price
-            })
+            body: JSON.stringify({ ownerId, address, city, state, country, lat, lng, name, description, price })
         }
     )
 
+    if (response.ok) {
 
+        const spot = await response.json();
 
+        await csrfFetch(
+            `/api/spots/${spot.id}/images`,
+            {
+                method: 'POST',
+                header: {
+                    'Content-Type': 'application/json',
+                    'XSRF-Token': Cookies.get('XSRF-TOKEN')
+                },
+                body: JSON.stringify({
+                    spotId: spot.id,
+                    url,
+                    preview: true
+                })
+            }
+        )
 
-    const spot = await response.json();
-    dispatch(readSpot(spot))
-    return spot
+        dispatch(readSpot(spot))
+        return spot
+    }
 }
 
 export const editSpot = (spotId, data) => async dispatch => {
