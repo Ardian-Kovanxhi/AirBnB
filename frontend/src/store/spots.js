@@ -1,7 +1,11 @@
+import Cookies from "js-cookie";
 import { csrfFetch } from "./csrf";
+
 
 const READ_SPOTS = 'spots/READ_SPOTS'
 const READ_SPOT = 'spot/READ_SPOT'
+const DELETE_SPOT = 'spot/DELETE_SPOT'
+
 
 const readSpots = (spots) => {
     return {
@@ -9,12 +13,21 @@ const readSpots = (spots) => {
         spots
     }
 }
-const readSpot = spot => {
+const readSpot = (spot) => {
     return {
         type: READ_SPOT,
         spot
     }
 }
+
+const deleteSpot = () => {
+    return {
+        type: DELETE_SPOT
+    }
+}
+
+
+
 
 
 export const getSpots = () => async dispatch => {
@@ -26,8 +39,13 @@ export const getSpots = () => async dispatch => {
         return spots
     }
 }
+<<<<<<< HEAD
 export const getSpot = () => async dispatch => {
     const response = await csrfFetch('/api/spots/1')
+=======
+export const getSpot = (spotId) => async dispatch => {
+    const response = await csrfFetch(`/api/spots/${spotId}`)
+>>>>>>> 3279c05506f1088b03e7f8f6ef3b6468444ea965
 
     if (response.ok) {
         const spot = await response.json();
@@ -36,18 +54,119 @@ export const getSpot = () => async dispatch => {
     }
 }
 
+export const submitSpot = (data) => async dispatch => {
+
+    const { ownerId, address, city, state, country, lat, lng, name, description, price, url } = data
+
+    const response = await csrfFetch(
+        '/api/spots',
+        {
+            method: 'POST',
+            header: {
+                'Content-Type': 'application/json',
+                'XSRF-Token': Cookies.get('XSRF-TOKEN')
+            },
+            body: JSON.stringify({ ownerId, address, city, state, country, lat, lng, name, description, price })
+        }
+    )
+
+    if (response.ok) {
+
+        const spot = await response.json();
+
+        await csrfFetch(
+            `/api/spots/${spot.id}/images`,
+            {
+                method: 'POST',
+                header: {
+                    'Content-Type': 'application/json',
+                    'XSRF-Token': Cookies.get('XSRF-TOKEN')
+                },
+                body: JSON.stringify({
+                    spotId: spot.id,
+                    url,
+                    preview: true
+                })
+            }
+        )
+
+        dispatch(readSpot(spot))
+        return spot
+    }
+}
+
+export const editSpot = (spotId, data) => async dispatch => {
+
+    const {
+
+        address,
+        city,
+        state,
+        country,
+        lat,
+        lng,
+        name,
+        description,
+        price
+
+    } = data
+
+    const response = await csrfFetch(
+        `/api/spots/${spotId}`,
+        {
+            method: 'PUT',
+            header: {
+                'Content-Type': 'application/json',
+                'XSRF-Token': Cookies.get('XSRF-TOKEN')
+            },
+            body: JSON.stringify({
+                address,
+                city,
+                state,
+                country,
+                lat,
+                lng,
+                name,
+                description,
+                price
+            })
+        }
+    )
+
+
+    const spot = await response.json();
+    dispatch(readSpot(spot))
+    return spot
+}
+
+export const removeSpot = (spotId) => async dispatch => {
+    const response = await csrfFetch(`/api/spots/${spotId}`, {
+        method: 'DELETE',
+    });
+    dispatch(deleteSpot()); // deleteSpot action needed
+    return response;
+};
+
+
+
 const initialState = { allSpots: {}, singleSpot: {} }
 
 export default function spotsReducer(state = initialState, action) {
+    let newState;
     switch (action.type) {
         case READ_SPOTS: {
-            const newState = { allSpots: {}, singleSpot: {} }
+            newState = { allSpots: {}, singleSpot: {} }
             action.spots.forEach(spot => newState.allSpots[spot.id] = spot);
             return newState
         }
         case READ_SPOT: {
-            const newState = { ...state, singleSpot: {} }
+            newState = { ...state, singleSpot: {} }
             newState.singleSpot = action.spot
+            return newState
+        }
+        case DELETE_SPOT: {
+            newState = { ...state }
+            newState.singleSpot = {};
             return newState
         }
         default:

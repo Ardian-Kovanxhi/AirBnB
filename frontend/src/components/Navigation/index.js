@@ -1,25 +1,32 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import OpenModalButton from '../OpenModalButton';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
+import { demoUserLogin } from '../../store/session';
+import logo from '../../images/mogusBnB.png'
 import './Navigation.css';
 
 function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
+    const history = useHistory();
+    const dispatch = useDispatch();
 
     let sessionLinks;
     if (sessionUser) {
         sessionLinks = (
-            <li>
-                <ProfileButton user={sessionUser} />
-            </li>
+            <div>
+                <button onClick={() => history.push('/create-spot')}>Create Spot</button>
+                <li>
+                    <ProfileButton user={sessionUser} />
+                </li>
+            </div>
         );
     } else {
         sessionLinks = (
-            <li>
+            <div>
                 <OpenModalButton
                     buttonText="Log In"
                     modalComponent={<LoginFormModal />}
@@ -28,17 +35,28 @@ function Navigation({ isLoaded }) {
                     buttonText="Sign Up"
                     modalComponent={<SignupFormModal />}
                 />
-            </li>
+                <button
+                    onClick={() => dispatch(demoUserLogin())}
+                >
+                    Demo User
+                </button>
+            </div>
         );
     }
 
     return (
-        <ul>
-            <li>
-                <NavLink exact to="/">Home</NavLink>
-            </li>
+        <div className='top-nav-bar'>
+            <div
+                className='BnB-title'
+                onClick={() => history.push('/')}
+            >
+                <img className='mogus-icon' src={logo} />
+                <h2>
+                    ArdianBnB
+                </h2>
+            </div>
             {isLoaded && sessionLinks}
-        </ul>
+        </div>
     );
 }
 

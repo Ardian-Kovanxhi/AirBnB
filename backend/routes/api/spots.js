@@ -21,16 +21,16 @@ const validateSpot = [
     check('country')
         .exists({ checkFalsy: true })
         .withMessage('Country is required'),
-    check('lat')
-        .exists({ checkFalsy: true })
-        .withMessage('Latitude is not valid'),
-    check('lng')
-        .exists({ checkFalsy: true })
-        .withMessage('Longitude is not valid'),
+    // check('lat')
+    //     .exists({ checkFalsy: true })
+    //     .withMessage('Latitude is not valid'),
+    // check('lng')
+    //     .exists({ checkFalsy: true })
+    //     .withMessage('Longitude is not valid'),
     check('name')
         .exists({ checkFalsy: true })
         .isLength({ max: 50 })
-        .withMessage('Name must exist and be less than 50 characters'),
+        .withMessage('Name must exist and be 50 characters or less'),
     check('description')
         .exists({ checkFalsy: true })
         .withMessage('Description is required'),
@@ -142,15 +142,30 @@ router.get('/current', requireAuth, async (req, res) => {
     res.json({ Spots })
 })
 
-//GET /api/spots/:spotId  | details of a spot by user Id
+//GET /api/spots/:spotId  | details of a spot by spot Id
 router.get('/:spotId', async (req, res) => {
     const spotId = req.params.spotId;
+
+    const Reviews = await Review.findAll({ where: { spotId } });
+
+
+
     const spot = await Spot.scope("spotDetails").findByPk(spotId, {
         include: [
             { model: SpotImage, attributes: ['id', 'url', 'preview'] },
             { model: User, as: 'Owner', attributes: ['id', 'firstName', 'lastName'] }
         ]
     });
+
+    let reviewAvg = 0
+
+    for (let review of Reviews) {
+        reviewAvg += review.stars
+    }
+
+    spot.avgStarRating = reviewAvg / Reviews.length
+    spot.numReviews = Reviews.length
+    await spot.save
 
     //query for reviews and update numreviews and avgrating with agregate
 

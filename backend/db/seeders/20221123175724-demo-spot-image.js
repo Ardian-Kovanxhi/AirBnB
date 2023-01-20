@@ -21,17 +21,17 @@ module.exports = {
     return queryInterface.bulkInsert(options, [
       {
         spotId: 1,
-        url: 'sampleURL1.com',
+        url: 'https://cdna.artstation.com/p/assets/images/images/022/484/692/large/nix-newton-draculas-castle.jpg?1575587233',
         preview: true
       },
       {
         spotId: 2,
-        url: 'sampleURL2.com',
+        url: 'https://images.nintendolife.com/456988693e8da/overpriced.large.jpg',
         preview: false
       },
       {
         spotId: 3,
-        url: 'sampleURL3.com',
+        url: 'https://destiny.wiki.gallery/images/thumb/a/a9/Destiny_tower_screenshot.jpg/1600px-Destiny_tower_screenshot.jpg',
         preview: true
       },
     ], {});
