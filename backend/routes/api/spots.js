@@ -77,6 +77,23 @@ router.get('/', async (req, res) => {
 
     const spots = await Spot.findAll({ ...pagination });
 
+    for (let spot of spots) {
+        const rev = await Review.findAll({ where: { spotId: spot.id } });
+
+        if (!rev.length) continue
+
+        else {
+            let stars = 0
+            for (let review of rev) {
+                stars += review.stars
+            }
+
+            spot.numReviews = rev.length;
+            spot.avgStarRating = (stars / rev.length).toFixed(2)
+            await spot.save();
+        }
+    }
+
     res.json(spots);
 });
 
@@ -156,18 +173,6 @@ router.get('/:spotId', async (req, res) => {
             { model: User, as: 'Owner', attributes: ['id', 'firstName', 'lastName'] }
         ]
     });
-
-    let reviewAvg = 0
-
-    for (let review of Reviews) {
-        reviewAvg += review.stars
-    }
-
-    spot.avgStarRating = reviewAvg / Reviews.length
-    spot.numReviews = Reviews.length
-    await spot.save
-
-    //query for reviews and update numreviews and avgrating with agregate
 
     if (!spot) {
         res.statusCode = 404;
@@ -257,6 +262,9 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
         review,
         stars
     })
+
+    spot.numReviews++
+    spot.avgStarRating = (((spot.avgStarRating * (spot.numReviews - 1)) + newReview.stars) / spot.numReviews).toFixed(2)
 
     res.statusCode = 201;
     res.json(newReview);
