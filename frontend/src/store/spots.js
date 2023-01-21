@@ -141,7 +141,7 @@ export const removeSpot = (spotId) => async dispatch => {
         method: 'DELETE',
     });
     if (response.ok) {
-        await dispatch(deleteSpot());
+        const deleted = await dispatch(deleteSpot());
         return response;
     }
 };
@@ -166,9 +166,9 @@ export default function spotsReducer(state = initialState, action) {
         case DELETE_SPOT: {
             newState = { ...state }
             newState.singleSpot = {};
-            if (newState.allSpots[action.spot.id]) {
-                delete newState.allSpots[action.spot.id]
-            }
+            // if (newState.allSpots[action.spot.id]) {
+            //     delete newState.allSpots[action.spot.id]
+            // }
             return newState
         }
         default:

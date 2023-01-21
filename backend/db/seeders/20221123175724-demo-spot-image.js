@@ -25,9 +25,19 @@ module.exports = {
         preview: true
       },
       {
+        spotId: 1,
+        url: 'https://cdna.artstation.com/p/assets/images/images/022/484/692/large/nix-newton-draculas-castle.jpg?1575587233',
+        preview: false
+      },
+      {
+        spotId: 1,
+        url: 'https://cdna.artstation.com/p/assets/images/images/022/484/692/large/nix-newton-draculas-castle.jpg?1575587233',
+        preview: false
+      },
+      {
         spotId: 2,
         url: 'https://images.nintendolife.com/456988693e8da/overpriced.large.jpg',
-        preview: false
+        preview: true
       },
       {
         spotId: 3,

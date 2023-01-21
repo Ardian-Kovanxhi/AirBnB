@@ -7,6 +7,7 @@ import HomeSpots from "./components/Spots/AllSpots";
 import SelectedSpot from "./components/Spots/SingleSpot";
 import SpotCreation from "./components/SpotFormPage/SpotForm";
 import SpotEditor from "./components/SpotEditPage/SpotEdit";
+import UserReviews from "./components/UserReviews";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,9 +23,10 @@ function App() {
         <Switch>
           <Route exact path={'/'} component={HomeSpots} />
           <Route path={'/create-spot'} component={SpotCreation} />
+          <Route path={'/user-reviews'} component={UserReviews} />
           <Route path={'/:spotId/edit'} component={SpotEditor} />
           <Route path={'/:spotId'} component={SelectedSpot} />
-          <Route>It works</Route>
+          <Route>Page Not found</Route>
         </Switch>
       )}
     </>

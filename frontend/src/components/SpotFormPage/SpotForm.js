@@ -61,7 +61,7 @@ export default function SpotCreation() {
     const submitHandler = async (e) => {
         e.preventDefault();
 
-        const test = await dispatch(submitSpot({
+        const newSpot = await dispatch(submitSpot({
             ownerId: sessionUser.id,
             address,
             city,
@@ -76,9 +76,9 @@ export default function SpotCreation() {
         }))
 
         // console.log(test)
-        if (test.id) {
-            history.push(`/${test.id}`)
-        }
+        history.push(`/${newSpot.id}`)
+        // if (test.id) {
+        // }
     }
 
     return (
