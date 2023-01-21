@@ -1,4 +1,11 @@
 .top-nav-bar {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    background-color: darkgray;
+    position: fixed;
+    top: 0;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;

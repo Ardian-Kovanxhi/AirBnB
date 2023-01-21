@@ -26,13 +26,13 @@ export default function HomeSpots() {
                     >
                         <div className='home-spots-info-div'>
                             <div>
-                                {spot.id}: {spot.name}
+                                {`${spot.city}, ${spot.state}`}
                             </div>
                             <div>
-                                Address: {spot.address}
+                                {spot.avgStarRating}
                             </div>
                             <div>
-                                Price: ${spot.price}
+                                {`$${spot.price} night`}
                             </div>
                         </div>
                         <img
