@@ -124,7 +124,7 @@ export default function SelectedSpot() {
                             User.id === Spot.ownerId ?
 
                                 <div className="single-spot-buttons-div">
-                                    <button disabled='true'>
+                                    <button>
                                         <OpenModalMenuItem
                                             itemText="Edit"
                                             modalComponent={<SpotEditModal />}
