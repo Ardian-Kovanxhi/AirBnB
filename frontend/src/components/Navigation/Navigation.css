@@ -19,14 +19,21 @@
         'GRAD' 0,
         'opsz' 48;
     background-color: green;
-} 
-*/
+} */
+
 
 .BnB-title {
     display: flex;
     align-items: center;
     font-size: x-large;
     cursor: pointer;
+}
+
+.profile-button-div {
+    /* height: 200px; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .profile-button {
@@ -43,6 +50,24 @@
     margin: 5px;
     width: 70px;
     /* height: 50px; */
+}
+
+.profile-dropdown {
+    width: 150px;
+    height: fit-content;
+    margin-top: 35px;
+    margin-right: 100px;
+    position: absolute;
+    background-color: white;
+    border: lightgray 1px solid;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.dropdown-info {
+    margin: 20px;
 }
 
 .hidden {

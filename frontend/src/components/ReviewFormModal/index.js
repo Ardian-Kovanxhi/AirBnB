@@ -3,41 +3,43 @@ import { createReview } from "../../store/reviews";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router";
 import { getSpot } from "../../store/spots";
-import './reviewForm.css'
+import { useModal } from "../../context/Modal";
 
-export default function ReviewCreation() {
+export default function ReviewFormModal() {
     const history = useHistory();
     const { spotId } = useParams();
     const dispatch = useDispatch();
     const [stars, setStars] = useState(0);
     const [review, setReview] = useState();
+    const { closeModal } = useModal();
 
-    useEffect(() => {
-        dispatch(getSpot(spotId))
-    }, [])
+    // useEffect(() => {
+    //     dispatch(getSpot(spotId))
+    // }, [])
 
     const spot = useSelector(state => state.spots.singleSpot);
 
     const submitHandler = async (e) => {
         e.preventDefault();
 
-        const newReview = await dispatch(createReview(spotId, {
+        const newReview = await dispatch(createReview(spot.id, {
             stars,
             review
         }))
 
+        closeModal();
 
         spot.numReviews++
         spot.avgStarRating = ((spot.avgStarRating * (spot.numReviews - 1)) / spot.numReviews).toFixed(2)
 
-
-        history.push(`/${spotId}`)
+        await dispatch(getSpot(spot.id))
+        // history.push(`/${spot.id}`)
     }
 
 
     return (
         <form
-            className="testing"
+            // className="testing"
             onSubmit={submitHandler}
         >
             <ul>

@@ -129,10 +129,12 @@ export const editSpot = (spotId, data) => async dispatch => {
         }
     )
 
-
-    const spot = await response.json();
-    dispatch(readSpot(spot))
-    return spot
+    if (response.ok) {
+        const edit = await csrfFetch(`/api/spots/${spotId}`);
+        const spot = await edit.json();
+        dispatch(readSpot(spot))
+        return spot
+    }
 }
 
 export const removeSpot = (spotId) => async dispatch => {

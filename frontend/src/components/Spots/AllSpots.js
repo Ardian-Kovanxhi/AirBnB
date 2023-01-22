@@ -29,6 +29,9 @@ export default function HomeSpots() {
                                 {`${spot.city}, ${spot.state}`}
                             </div>
                             <div>
+                                <span class="material-symbols-outlined">
+                                    star
+                                </span>
                                 {spot.avgStarRating}
                             </div>
                             <div>

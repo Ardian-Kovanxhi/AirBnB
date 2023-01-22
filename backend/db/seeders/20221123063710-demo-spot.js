@@ -22,7 +22,7 @@ module.exports = {
                         {
                                 ownerId: 1,
                                 address: '123 drumul sângelui (blood road in Romanian)',
-                                city: '?',
+                                city: 'Sighișoara',
                                 state: 'Wallachia',
                                 country: 'Romania',
                                 lat: 4.1,

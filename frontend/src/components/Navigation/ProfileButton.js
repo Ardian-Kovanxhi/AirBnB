@@ -6,6 +6,7 @@ import { demoUserLogin } from '../../store/session';
 import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
+import SpotFormModal from "../SpotFormModal";
 
 function ProfileButton({ user }) {
     const history = useHistory();
@@ -43,30 +44,38 @@ function ProfileButton({ user }) {
     const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
 
     return (
-        <>
+        <div className="profile-button-div">
             <button onClick={openMenu}>
-                <span class="material-symbols-outlined">
+                <span className="material-symbols-outlined">
                     menu
                 </span>
-                <span class="material-symbols-outlined">
+                <span className="material-symbols-outlined">
                     account_circle
                 </span>
             </button>
-            <ul className={ulClassName} ref={ulRef}>
+            <div className={ulClassName} ref={ulRef}>
                 {user ? (
                     <>
-                        <li>{user.username}</li>
-                        <li>{user.firstName} {user.lastName}</li>
-                        <li>{user.email}</li>
-                        <li>
-                            <button onClick={() => history.push('/create-spot')}>Create Spot</button>
-                        </li>
-                        <li>
-                            <button onClick={() => history.push('/user-reviews')}>Reviews</button>
-                        </li>
-                        <li>
+                        <div className="dropdown-info">{user.username}</div>
+                        <div className="dropdown-info">{user.firstName} {user.lastName}</div>
+                        <div className="dropdown-info">{user.email}</div>
+                        <div className="dropdown-info">
+                            {/* <button onClick={() => history.push('/create-spot')}>Create Spot</button> */}
+                            <OpenModalMenuItem
+                                itemText="Create Spot"
+                                onItemClick={closeMenu}
+                                modalComponent={<SpotFormModal />}
+                            />
+                        </div>
+                        <div className="dropdown-info">
+                            <button onClick={() => {
+                                history.push('/user-reviews')
+                                closeMenu();
+                            }}>Reviews</button>
+                        </div>
+                        <div className="dropdown-info">
                             <button onClick={logout}>Log Out</button>
-                        </li>
+                        </div>
                     </>
                 ) : (
                     <>
@@ -82,13 +91,14 @@ function ProfileButton({ user }) {
                         />
                         <button
                             onClick={() => { dispatch(demoUserLogin()); closeMenu() }}
+                            className="dropdown-info"
                         >
                             Demo User
                         </button>
                     </>
                 )}
-            </ul>
-        </>
+            </div>
+        </div>
     );
 }
 

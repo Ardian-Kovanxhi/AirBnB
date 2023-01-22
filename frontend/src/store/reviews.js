@@ -55,7 +55,13 @@ export const createReview = (spotId, data) => async dispatch => {
     })
 
     if (response.ok) {
-        return getReviewsBySpot(spotId)
+        const spotRefresh = await csrfFetch(`/api/spots/${spotId}/reviews`)
+
+        if (spotRefresh.ok) {
+            const reviews = await spotRefresh.json();
+            dispatch(readReviews(reviews))
+            return reviews
+        }
     }
 }
 
@@ -63,9 +69,15 @@ export const removeReview = (reviewId) => async dispatch => {
     const response = await csrfFetch(`/api/reviews/${reviewId}`, {
         method: 'DELETE'
     });
+
     if (response.ok) {
-        return getReviewsByUser()
+        const newRev = await csrfFetch('/api/reviews/current')
+        const reviews = await newRev.json();
+        dispatch(readReviews(reviews))
+        return reviews
     }
+    // if (response.ok) {
+    // }
 }
 
 const initialState = { allReviews: {} }

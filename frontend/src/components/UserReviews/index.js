@@ -23,8 +23,9 @@ export default function UserReviews() {
 
     reviews = Object.values(useSelector(state => state.reviews.allReviews))
 
-    const deleteHandler = (reviwId) => {
-        dispatch(removeReview(reviwId))
+    const deleteHandler = (reviewId) => {
+        dispatch(removeReview(reviewId))
+        // console.log(reviewId)
     }
 
     return (

@@ -23,7 +23,7 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path={'/'} component={HomeSpots} />
-          <Route path={'/create-spot'} component={SpotCreation} />
+          {/* <Route path={'/create-spot'} component={SpotCreation} /> */}
           <Route path={'/user-reviews'} component={UserReviews} />
           <Route path={'/:spotId/edit'} component={SpotEditor} />
           <Route path={'/:spotId/review'} component={ReviewCreation} />
