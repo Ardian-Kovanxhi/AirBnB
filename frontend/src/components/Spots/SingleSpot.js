@@ -57,18 +57,52 @@ export default function SelectedSpot() {
 
             <div className="single-spot-div">
 
-                <div className="single-spot-info-name-div">
+                <div className="info-buttons-div">
 
-                    <div className="selected-spot-name">
-                        {Spot.name}
+                    <div className="single-spot-info-name-div">
+
+                        <div className="selected-spot-name">
+                            {Spot.name}
+                        </div>
+                        <div id="selected-spot-info-div">
+                            <span>
+                                {Spot.avgStarRating}            ·     {`${Spot.numReviews} reviews`}        ·         {`${Spot.city}, ${Spot.state}, ${Spot.country}`}
+                            </span>
+                        </div>
+
                     </div>
-                    <div id="selected-spot-info-div">
-                        <span>
-                            {Spot.avgStarRating}            ·     {`${Spot.numReviews} reviews`}        ·         {`${Spot.city}, ${Spot.state}, ${Spot.country}`}
-                        </span>
+
+                    <div>
+                        {
+                            User ?
+                                User.id === Spot.ownerId ?
+
+                                    <div className="single-spot-buttons-div">
+                                        <button
+                                            onClick={() => history.push(`/${spotId}/edit`)}
+                                        >
+                                            Edit Spot
+                                        </button>
+                                        <button
+                                            onClick={deleteHandler}
+                                        >
+                                            Delete Spot
+                                        </button>
+                                    </div> :
+
+                                    <button>
+                                        Review
+                                    </button> :
+
+                                <OpenModalButton
+                                    buttonText='Review'
+                                    modalComponent={<LoginFormModal />}
+                                />
+                        }
                     </div>
 
                 </div>
+
 
                 <div className="gen-img-div">
                     {
@@ -109,34 +143,6 @@ export default function SelectedSpot() {
 
             </div> */}
 
-                <div>
-                    {
-                        User ?
-                            User.id === Spot.ownerId ?
-
-                                <div className="single-spot-buttons-div">
-                                    <button
-                                        onClick={() => history.push(`/${spotId}/edit`)}
-                                    >
-                                        Edit Spot
-                                    </button>
-                                    <button
-                                        onClick={deleteHandler}
-                                    >
-                                        Delete Spot
-                                    </button>
-                                </div> :
-
-                                <button>
-                                    Review
-                                </button> :
-
-                            <OpenModalButton
-                                buttonText='Review'
-                                modalComponent={<LoginFormModal />}
-                            />
-                    }
-                </div>
 
             </div>
 
