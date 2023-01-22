@@ -30,7 +30,7 @@ function ProfileButton({ user }) {
         e.preventDefault();
         dispatch(sessionActions.logout());
     };
-
+    // + (showMenu ? "" : " hidden"
     const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
 
     return (
