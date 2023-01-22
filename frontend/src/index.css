@@ -1,9 +1,10 @@
 /* TODO Add site wide styles */
 body {
-    background-color: darkgray;
+    background-color: white;
 }
 
 button {
-    border: 2px;
-    border-radius: 5px;
+    border: 0px;
+    background-color: white;
+    /* border-radius: 5px; */
 }

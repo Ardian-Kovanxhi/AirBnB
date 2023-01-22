@@ -2,7 +2,8 @@
     margin: 0px;
     padding: 0px;
     border: 0px;
-    background-color: darkgray;
+    border-bottom: 1px lightgray solid;
+    background-color: white;
     position: fixed;
     top: 0;
     width: 100%;
@@ -11,11 +12,29 @@
     align-items: center;
 }
 
+/* .material-symbols-outlined {
+    font-variation-settings:
+        'FILL' 1,
+        'wght' 100,
+        'GRAD' 0,
+        'opsz' 48;
+    background-color: green;
+} 
+*/
+
 .BnB-title {
     display: flex;
     align-items: center;
     font-size: x-large;
     cursor: pointer;
+}
+
+.profile-button {
+    background-color: white;
+    margin-right: 20px;
+    border: 1px lightgray solid;
+    border-radius: 30px;
+    overflow: hidden;
 }
 
 /* .BnB-title:hover {} */
