@@ -1,6 +1,6 @@
 import React from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import logo from '../../images/mogusBnB.png'
 import './Navigation.css';
