@@ -85,7 +85,6 @@ export const submitSpot = (data) => async dispatch => {
             }
         )
 
-        // console.log(spot)
 
         dispatch(readSpot(spot))
         return spot
@@ -141,7 +140,7 @@ export const removeSpot = (spotId) => async dispatch => {
         method: 'DELETE',
     });
     if (response.ok) {
-        const deleted = await dispatch(deleteSpot());
+        await dispatch(deleteSpot());
         return response;
     }
 };

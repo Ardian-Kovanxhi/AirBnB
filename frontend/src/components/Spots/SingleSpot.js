@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { getSpot, removeSpot } from '../../store/spots';
+import { createReview } from "../../store/reviews";
 // import { removeSpot } from "../../store/spots";
 import { getReviewsBySpot } from "../../store/reviews";
 import OpenModalButton from '../OpenModalButton';
@@ -90,7 +91,9 @@ export default function SelectedSpot() {
                                         </button>
                                     </div> :
 
-                                    <button>
+                                    <button
+                                        onClick={() => history.push(`/${spotId}/review`)}
+                                    >
                                         Review
                                     </button> :
 

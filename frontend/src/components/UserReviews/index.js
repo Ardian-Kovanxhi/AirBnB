@@ -23,10 +23,10 @@ export default function UserReviews() {
 
     reviews = Object.values(useSelector(state => state.reviews.allReviews))
 
-    // const deleteHandler = async (butt) => {
-    //     console.log(butt)
-    //     history.push('/user-reviews')
-    // }
+    const deleteHandler = async (butt) => {
+        console.log(butt)
+        history.push('/user-reviews')
+    }
 
     return (
         <div className="filler-span">
@@ -38,7 +38,7 @@ export default function UserReviews() {
                                 {el.review}
                             </div>
                             <button
-                            // onClick={deleteHandler(el.id)}
+                                onClick={deleteHandler(el.id)}
                             >
                                 Delete
                             </button>
