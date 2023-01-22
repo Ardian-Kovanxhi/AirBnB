@@ -35,7 +35,7 @@ export default function HomeSpots() {
                                 {spot.avgStarRating}
                             </div>
                             <div>
-                                {`$${spot.price.toFixed(2)} night`}
+                                {`$${spot.price} night`}
                             </div>
                         </div>
                         <img
