@@ -11,9 +11,10 @@ const readReviews = (reviews) => {
         reviews
     }
 }
-const deleteReview = () => {
+const deleteReview = (review) => {
     return {
-        type: DELETE_REVIEW
+        type: DELETE_REVIEW,
+        review
     }
 }
 
@@ -63,8 +64,7 @@ export const removeReview = (reviewId) => async dispatch => {
         method: 'DELETE'
     });
     if (response.ok) {
-        await dispatch(deleteReview)
-        return response
+        return getReviewsByUser()
     }
 }
 
@@ -77,6 +77,10 @@ export default function reviewsReducer(state = initialState, action) {
             newState = { allReviews: {} }
             action.reviews.Reviews.forEach(review => newState.allReviews[review.id] = review);
             return newState
+        }
+        case DELETE_REVIEW: {
+            newState = { ...state }
+            delete newState.allReviews[action.reviewId]
         }
         default:
             newState = { ...state }

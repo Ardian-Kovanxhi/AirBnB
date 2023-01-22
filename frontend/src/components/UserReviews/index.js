@@ -23,9 +23,8 @@ export default function UserReviews() {
 
     reviews = Object.values(useSelector(state => state.reviews.allReviews))
 
-    const deleteHandler = async (butt) => {
-        console.log(butt)
-        history.push('/user-reviews')
+    const deleteHandler = (reviwId) => {
+        dispatch(removeReview(reviwId))
     }
 
     return (
@@ -38,7 +37,7 @@ export default function UserReviews() {
                                 {el.review}
                             </div>
                             <button
-                                onClick={deleteHandler(el.id)}
+                                onClick={() => deleteHandler(el.id)}
                             >
                                 Delete
                             </button>
