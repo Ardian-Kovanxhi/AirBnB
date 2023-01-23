@@ -33,13 +33,17 @@ export default function SelectedSpot() {
 
     let starTotal = 0
 
+    for (let review of reviewArr) {
+        starTotal += review.stars
+    }
+
     if (User) {
         for (let review of reviewArr) {
-            starTotal += review.stars
             if (review.userId === User.id) {
                 disabled = true
             }
         }
+
     }
 
     const spotImgs = []
@@ -124,7 +128,9 @@ export default function SelectedSpot() {
                             User.id === Spot.ownerId ?
 
                                 <div className="single-spot-buttons-div">
-                                    <button>
+                                    <button
+                                        className="edit-button"
+                                    >
                                         <OpenModalMenuItem
                                             itemText="Edit"
                                             modalComponent={<SpotEditModal />}
@@ -136,6 +142,7 @@ export default function SelectedSpot() {
                                         Edit
                                     </button> */}
                                     <button
+                                        className="delete-button"
                                         onClick={deleteHandler}
                                     >
                                         Delete
@@ -152,8 +159,7 @@ export default function SelectedSpot() {
                                                 Review
                                             </button> :
                                         } */}
-                                    <button
-                                        disabled={disabled}
+                                    <div
                                         className={`review-modal-button-${disabled}`}
                                     >
                                         <OpenModalMenuItem
@@ -161,14 +167,16 @@ export default function SelectedSpot() {
                                             // onItemClick={closeMenu}
                                             modalComponent={<ReviewFormModal />}
                                         />
-                                    </button>
+                                    </div>
+
                                 </div>
                             :
 
-                            < OpenModalButton
-                                buttonText='Review'
+                            < OpenModalMenuItem
+                                itemText='Review'
                                 modalComponent={<LoginFormModal />}
                             />
+
                     }
 
 
@@ -202,15 +210,36 @@ export default function SelectedSpot() {
                     }
                 </div>
 
-                <div>
+                <div
+                    className="host-price-div"
+                >
 
-                    <div>
+                    <div
+                        className="host"
+                    >
                         {`Home hosted by ${name}`}
                     </div>
 
-                    <div>
-                        ${Spot.price}
+                    <div
+                        className='single-home-price'
+                    >
+                        <div
+                            className='price-actual'
+                        >
+                            {`$${Spot.price}`}
+                        </div>
+                        <div className="home-dot">
+                            ·
+                        </div>
+                        <div>
+                            {'night'}
+                        </div>
                     </div>
+                    {/* <div
+                        className=""
+                    >
+                        ${Spot.price}
+                    </div> */}
 
                 </div>
 

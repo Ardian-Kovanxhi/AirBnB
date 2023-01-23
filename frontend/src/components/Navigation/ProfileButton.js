@@ -45,7 +45,10 @@ function ProfileButton({ user }) {
 
     return (
         <div className="profile-button-div">
-            <button onClick={openMenu}>
+            <button
+                className="profile-button-actual"
+                onClick={openMenu}
+            >
                 <span className="material-symbols-outlined">
                     menu
                 </span>
@@ -59,46 +62,68 @@ function ProfileButton({ user }) {
                         <div className="dropdown-info">{user.username}</div>
                         <div className="dropdown-info">{user.firstName} {user.lastName}</div>
                         <div className="dropdown-info">{user.email}</div>
-                        <div className="dropdown-info">
-                            {/* <button onClick={() => history.push('/create-spot')}>Create Spot</button> */}
-                            <OpenModalMenuItem
-                                itemText="Create Spot"
-                                onItemClick={closeMenu}
-                                modalComponent={<SpotFormModal />}
-                            />
-                        </div>
-                        <div className="dropdown-info">
-                            <button onClick={() => {
+                        <OpenModalMenuItem
+                            itemText="Create Spot"
+                            onItemClick={closeMenu}
+                            modalComponent={<SpotFormModal />}
+                        />
+                        {/* {/* <div className="dropdown-info">
+                            {/* <button onClick={() => history.push('/create-spot')}>Create Spot</button> 
+
+
+                    </div> * /} */}
+                        < div
+                            className="dropdown-info"
+                            onClick={() => {
                                 history.push('/user-reviews')
                                 closeMenu();
-                            }}>Reviews</button>
+                            }}
+                        >
+                            Reviews
+                            {/* <button onClick={() => {
+                                history.push('/user-reviews')
+                                closeMenu();
+                            }}>Reviews</button> */}
                         </div>
-                        <div className="dropdown-info">
-                            <button onClick={logout}>Log Out</button>
+                        <div className="dropdown-info"
+                            onClick={logout}
+                        >
+                            Log Out
+                            {/* <button onClick={logout}>Log Out</button> */}
                         </div>
                     </>
                 ) : (
                     <>
-                        <OpenModalMenuItem
-                            itemText="Log In"
-                            onItemClick={closeMenu}
-                            modalComponent={<LoginFormModal />}
-                        />
-                        <OpenModalMenuItem
-                            itemText="Sign Up"
-                            onItemClick={closeMenu}
-                            modalComponent={<SignupFormModal />}
-                        />
+                        <button
+                            className="dropdown-info profile-button-actual"
+                        >
+                            <OpenModalMenuItem
+                                itemText="Log In"
+                                onItemClick={closeMenu}
+                                modalComponent={<LoginFormModal />}
+                            />
+                        </button>
+                        <button
+                            className="dropdown-info profile-button-actual"
+                        >
+                            <OpenModalMenuItem
+                                itemText="Sign Up"
+                                onItemClick={closeMenu}
+                                modalComponent={<SignupFormModal />}
+                            />
+
+                        </button>
                         <button
                             onClick={() => { dispatch(demoUserLogin()); closeMenu() }}
-                            className="dropdown-info"
+                            className="dropdown-info profile-button-actual"
                         >
                             Demo User
                         </button>
                     </>
-                )}
-            </div>
-        </div>
+                )
+                }
+            </div >
+        </div >
     );
 }
 

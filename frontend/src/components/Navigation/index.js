@@ -2,6 +2,8 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
+import OpenModalButton from '../OpenModalButton';
+import SpotFormModal from '../SpotFormModal';
 import logo from '../../images/mogusBnB.png'
 import './Navigation.css';
 
@@ -23,8 +25,13 @@ function Navigation({ isLoaded }) {
             </div>
 
             {isLoaded && (
-                <div className='profile-button'>
-                    <ProfileButton user={sessionUser} />
+                <div
+                    className='nav-options-div'
+                >
+                    <div>BnB your home</div>
+                    <div className='profile-button'>
+                        <ProfileButton user={sessionUser} />
+                    </div>
                 </div>
             )}
         </div>

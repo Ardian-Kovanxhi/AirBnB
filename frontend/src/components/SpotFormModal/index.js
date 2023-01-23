@@ -3,6 +3,7 @@ import { submitSpot } from "../../store/spots";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
+import './SpotFormModal.css'
 
 
 /*
@@ -26,8 +27,8 @@ export default function SpotFormModal() {
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
     const [country, setCountry] = useState('');
-    const [lat, setLat] = useState(0);
-    const [lng, setLng] = useState(0);
+    // const [lat, setLat] = useState(0);
+    // const [lng, setLng] = useState(0);
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState(1);
@@ -44,13 +45,13 @@ export default function SpotFormModal() {
             detected.push('must be logged in')
         }
 
-        if (lat < -90 || lat > 90) {
-            detected.push('lat is out of range')
-        }
+        // if (lat < -90 || lat > 90) {
+        //     detected.push('lat is out of range')
+        // }
 
-        if (lng < -180 || lng > 180) {
-            detected.push('lng is out of range')
-        }
+        // if (lng < -180 || lng > 180) {
+        //     detected.push('lng is out of range')
+        // }
 
         if (price <= 0) {
             detected.push('price is out of range')
@@ -58,22 +59,22 @@ export default function SpotFormModal() {
 
         setErrors(detected)
 
-    }, [lat, lng, price, name, sessionUser])
+    }, [price, name, sessionUser])
+    // lat, lng, 
 
     const submitHandler = async (e) => {
         e.preventDefault();
-
         const newSpot = await dispatch(submitSpot({
             ownerId: sessionUser.id,
             address,
             city,
             state,
             country,
-            lat,
-            lng,
+            lat: 0,
+            lng: 0,
             name,
             description,
-            price,
+            price: Number(price).toFixed(0),
             url
         }))
 
@@ -85,7 +86,9 @@ export default function SpotFormModal() {
     return (
         <form
             onSubmit={submitHandler}
+            className='spot-form-modal'
         >
+            <h2 className="modal-title">Create Spot</h2>
             <ul>
                 {errors.map(el => (
                     <li>
@@ -94,7 +97,7 @@ export default function SpotFormModal() {
                 ))}
             </ul>
 
-            <div>
+            <div className="spot-form-modal-info">
                 <label>
                     {'Address: '}
                 </label>
@@ -107,7 +110,7 @@ export default function SpotFormModal() {
             </div>
 
 
-            <div>
+            <div className="spot-form-modal-info">
                 <label>
                     {'City: '}
                 </label>
@@ -119,7 +122,7 @@ export default function SpotFormModal() {
                 />
             </div>
 
-            <div>
+            <div className="spot-form-modal-info">
                 <label>
                     {'State: '}
                 </label>
@@ -131,7 +134,7 @@ export default function SpotFormModal() {
                 />
             </div>
 
-            <div>
+            <div className="spot-form-modal-info">
                 <label>
                     {'Country: '}
                 </label>
@@ -143,7 +146,7 @@ export default function SpotFormModal() {
                 />
             </div>
 
-            <div>
+            {/* <div>
                 <label>
                     {'lat: '}
                 </label>
@@ -165,9 +168,9 @@ export default function SpotFormModal() {
                     value={lng}
                     required
                 />
-            </div>
+            </div> */}
 
-            <div>
+            <div className="spot-form-modal-info">
                 <label>
                     {'Name: '}
                 </label>
@@ -180,11 +183,11 @@ export default function SpotFormModal() {
                 />
             </div>
 
-            <div>
+            <div className="spot-form-modal-info">
                 <label>
                     {'Description: '}
                 </label>
-                <input
+                <textarea
                     type="text"
                     onChange={(e) => setDescription(e.target.value)}
                     value={description}
@@ -192,7 +195,7 @@ export default function SpotFormModal() {
                 />
             </div>
 
-            <div>
+            <div className="spot-form-modal-info">
                 <label>
                     {'Price: '}
                 </label>
@@ -204,7 +207,7 @@ export default function SpotFormModal() {
                 />
             </div>
 
-            <div>
+            <div className="spot-form-modal-info">
                 <label>
                     {'URL: '}
                 </label>
@@ -216,17 +219,22 @@ export default function SpotFormModal() {
                 />
             </div>
 
-            <button
-                type='submit'
-                disabled={!!errors.length}
-            >
-                Submit
-            </button>
-            <button
-                onClick={() => history.push('/')}
-            >
-                Cancel
-            </button>
+            <div className="modal-buttons-div">
+                <button
+                    type='submit'
+                    className="spot-form-modal-buttons"
+                    disabled={!!errors.length}
+                >
+                    Submit
+                </button>
+
+                <button
+                    onClick={closeModal}
+                    className='spot-form-modal-buttons'
+                >
+                    Cancel
+                </button>
+            </div>
 
         </form>
     );

@@ -1,0 +1,56 @@
+#modal-content {
+    display: flex;
+    background-color: white;
+    padding: 40px;
+    width: 25%;
+}
+
+.modal-title {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+}
+
+.spot-form-modal {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: start;
+    width: 100%;
+}
+
+.spot-form-modal-info {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    /* align-items: center; */
+}
+
+.modal-buttons-div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.spot-form-modal-buttons {
+    margin: 10px 0px 0px;
+    padding: 10px 0px;
+    width: 100%;
+    border-radius: 10px;
+    border: 0px;
+    background-color: #DC0F62;
+    color: white;
+}
+
+input {
+    width: 100%;
+}
+
+textarea {
+    width: 100%;
+    height: 50px;
+    resize: none;
+}
