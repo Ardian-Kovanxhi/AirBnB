@@ -12,6 +12,19 @@
     align-items: center;
 }
 
+.fa-solid {
+    font-size: x-large;
+    padding: 4px 1px;
+}
+
+.fa-solid.fa-x {
+    font-size: large;
+}
+
+.fa-solid.fa-x:hover {
+    cursor: pointer;
+}
+
 .nav-options-div {
     display: flex;
     width: 100%;
@@ -79,7 +92,7 @@
 .profile-dropdown {
     width: 250px;
     height: fit-content;
-    margin-top: 35px;
+    margin-top: 40px;
     margin-right: 190px;
     position: absolute;
     background-color: white;

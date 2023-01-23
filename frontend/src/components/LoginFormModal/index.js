@@ -33,12 +33,17 @@ function LoginFormModal() {
         <div className="log-in-modal-div">
             <div className='modal-title-div'>
                 <h1>Log In</h1>
-                <span
+                {/* <FontAwesomeIcon icon="fa-solid fa-x" /> */}
+                <i
+                    className="fa-solid fa-x"
+                    onClick={closeModal}
+                ></i>
+                {/* <span
                     className="material-symbols-outlined"
                     onClick={closeModal}
                 >
                     close
-                </span>
+                </span> */}
             </div>
             <form
                 onSubmit={handleSubmit}
@@ -91,7 +96,7 @@ function LoginFormModal() {
                     Demo User
                 </button>
             </form>
-            <div
+            {/* <div
                 onClick={() => window.location.replace('https://github.com/Ardian-Kovanxhi')}
                 className="github-redirect"
             >
@@ -102,7 +107,7 @@ function LoginFormModal() {
                 >
                     Github
                 </a>
-            </div>
+            </div> */}
         </div >
     );
 }

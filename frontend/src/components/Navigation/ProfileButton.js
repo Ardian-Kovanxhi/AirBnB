@@ -49,12 +49,8 @@ function ProfileButton({ user }) {
                 className="profile-button-actual"
                 onClick={openMenu}
             >
-                <span className="material-symbols-outlined">
-                    menu
-                </span>
-                <span className="material-symbols-outlined">
-                    account_circle
-                </span>
+                <i className="fa-solid fa-bars"></i>
+                <i class="fa-sharp fa-solid fa-circle-user"></i>
             </button>
             <div className={ulClassName} ref={ulRef}>
                 {user ? (

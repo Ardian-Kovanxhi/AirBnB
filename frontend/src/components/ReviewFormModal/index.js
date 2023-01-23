@@ -50,12 +50,10 @@ export default function ReviewFormModal() {
 
                 <h2>Leave a Review</h2>
 
-                <span
-                    className="material-symbols-outlined"
+                <i
+                    className="fa-solid fa-x"
                     onClick={closeModal}
-                >
-                    close
-                </span>
+                ></i>
 
             </div>
 

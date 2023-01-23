@@ -33,12 +33,10 @@ function SignupFormModal() {
         <div>
             <div className="sign-up-div-title">
                 <h1>Sign Up</h1>
-                <span
-                    className="material-symbols-outlined"
+                <i
+                    className="fa-solid fa-x"
                     onClick={closeModal}
-                >
-                    close
-                </span>
+                ></i>
             </div>
             <form onSubmit={handleSubmit}>
                 <ul>

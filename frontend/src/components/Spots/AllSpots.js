@@ -34,9 +34,7 @@ export default function HomeSpots() {
                                 <div
                                     className='home stars'
                                 >
-                                    <span class="material-symbols-outlined">
-                                        star
-                                    </span>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
                                     {spot.avgStarRating}
                                 </div>
 

@@ -12,6 +12,10 @@
     /* margin-top: 150px; */
 }
 
+.fa-solid.fa-star {
+    font-size: medium;
+}
+
 .home-spots {
     display: flex;
     cursor: pointer;

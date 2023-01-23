@@ -105,9 +105,7 @@ export default function SelectedSpot() {
                             {Spot.name}
                         </div>
                         <div id="selected-spot-info-div">
-                            <span class="material-symbols-outlined">
-                                star
-                            </span>
+                            <i class="fa-sharp fa-solid fa-star"></i>
 
                             <div>
                                 {reviewArr.length > 0 ?

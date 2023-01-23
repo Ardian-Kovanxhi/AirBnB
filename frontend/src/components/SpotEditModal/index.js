@@ -93,12 +93,10 @@ export default function SpotEditModal() {
 
                 <h2 className="modal-title">Edit Spot</h2>
 
-                <span
-                    className="material-symbols-outlined"
+                <i
+                    className="fa-solid fa-x"
                     onClick={closeModal}
-                >
-                    close
-                </span>
+                ></i>
 
             </div>
             <ul

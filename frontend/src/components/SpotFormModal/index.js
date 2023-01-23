@@ -90,12 +90,10 @@ export default function SpotFormModal() {
         >
             <div className="modal-title-div">
                 <h2 className="modal-title">Create Spot</h2>
-                <span
-                    className="material-symbols-outlined"
+                <i
+                    className="fa-solid fa-x"
                     onClick={closeModal}
-                >
-                    close
-                </span>
+                ></i>
             </div>
             <ul
                 className="error-handling"
