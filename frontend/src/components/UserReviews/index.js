@@ -23,6 +23,12 @@ export default function UserReviews() {
 
     reviews = Object.values(useSelector(state => state.reviews.allReviews))
 
+    const spots = {};
+
+    for (let rev of reviews) {
+        spots[rev.spotId] = rev.Spot
+    }
+
     const deleteHandler = (reviewId) => {
         dispatch(removeReview(reviewId))
         // console.log(reviewId)
@@ -36,7 +42,7 @@ export default function UserReviews() {
                         return (
                             <div>
                                 <div>
-                                    Spot: {el.Spot.name}
+                                    Spot: {spots[el.spotId].name}
                                 </div>
                                 <div>
                                     Stars: {el.stars}

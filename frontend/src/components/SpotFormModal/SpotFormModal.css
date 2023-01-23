@@ -83,3 +83,7 @@ textarea {
 textarea:focus {
     outline: none;
 }
+
+.material-symbols-outlined:hover {
+    cursor: pointer;
+}
