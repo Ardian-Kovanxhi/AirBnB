@@ -40,18 +40,28 @@ export default function UserReviews() {
                 reviews.length ?
                     reviews.map(el => {
                         return (
-                            <div>
-                                <div>
-                                    Spot: {spots[el.spotId].name}
-                                </div>
-                                <div>
-                                    Stars: {el.stars}
-                                </div>
-                                <div>
-                                    Review: {el.review}
+                            <div
+                                className="user-spot-review-data-div"
+                            >
+                                <div
+                                    className="data-chunk"
+                                >
+                                    <div>
+                                        Spot: {Object.keys(spots).length ?
+                                            spots[el.spotId].name :
+                                            el.spotId
+                                        }
+                                    </div>
+                                    <div>
+                                        Stars: {el.stars}
+                                    </div>
+                                    <div>
+                                        Review: {el.review}
+                                    </div>
                                 </div>
                                 <button
                                     onClick={() => deleteHandler(el.id)}
+                                    className='user-review-delete-but'
                                 >
                                     Delete
                                 </button>

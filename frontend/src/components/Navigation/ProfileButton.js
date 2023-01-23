@@ -72,7 +72,7 @@ function ProfileButton({ user }) {
 
 
                     </div> * /} */}
-                        < div
+                        {/* < div
                             className="dropdown-info"
                             onClick={() => {
                                 history.push('/user-reviews')
@@ -80,11 +80,8 @@ function ProfileButton({ user }) {
                             }}
                         >
                             Reviews
-                            {/* <button onClick={() => {
-                                history.push('/user-reviews')
-                                closeMenu();
-                            }}>Reviews</button> */}
-                        </div>
+                        </div> */}
+
                         <div className="dropdown-info"
                             onClick={logout}
                         >

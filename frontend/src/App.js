@@ -24,7 +24,7 @@ function App() {
         <Switch>
           <Route exact path={'/'} component={HomeSpots} />
           {/* <Route path={'/create-spot'} component={SpotCreation} /> */}
-          <Route path={'/user-reviews'} component={UserReviews} />
+          {/* <Route path={'/user-reviews'} component={UserReviews} /> */}
           <Route path={'/:spotId/edit'} component={SpotEditor} />
           <Route path={'/:spotId/review'} component={ReviewCreation} />
           <Route path={'/:spotId'} component={SelectedSpot} />

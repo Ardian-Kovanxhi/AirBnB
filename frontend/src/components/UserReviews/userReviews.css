@@ -1,5 +1,28 @@
 .user-review-master-div {
-    margin-top: 20vh;
-    width: 500px;
+    display: flex;
+    margin-top: 17vh;
+    width: 100%;
     overflow-wrap: break-word;
+}
+
+.user-spot-review-data-div {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    max-width: 500px;
+    border: lightgray 1px solid;
+    border-radius: 15px;
+    overflow: hidden;
+    margin: 0px 10px 10px;
+}
+
+.data-chunk {
+    padding: 5px;
+}
+
+.user-review-delete-but {
+    background-color: #DC0F62;
+    border: 0px;
+    border-radius: 15px;
+    margin: 5px;
 }

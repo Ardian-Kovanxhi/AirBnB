@@ -5,7 +5,7 @@ import { getSpot, removeSpot } from '../../store/spots';
 import { createReview } from "../../store/reviews";
 // import { removeSpot } from "../../store/spots";
 import { getReviewsBySpot } from "../../store/reviews";
-import OpenModalButton from '../OpenModalButton';
+import { removeReview } from "../../store/reviews";
 import LoginFormModal from '../LoginFormModal';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import SpotEditModal from "../SpotEditModal";
@@ -84,7 +84,11 @@ export default function SelectedSpot() {
         }
     }
 
-
+    const reviewDeleteHandler = (reviewId) => {
+        dispatch(removeReview(reviewId, spotId))
+        // console.log(reviewId)
+        // console.log(reviewId)
+    }
 
     return (
         <div
@@ -282,6 +286,17 @@ export default function SelectedSpot() {
                                 >
                                     {el.User.firstName}
                                 </p>
+                                {
+                                    User ?
+
+                                        el.userId === User.id ?
+                                            <button
+                                                className="spot-user-delete-button"
+                                                onClick={() => reviewDeleteHandler(el.id)}
+                                            >delete</button> :
+
+                                            '' : ''
+                                }
 
                             </div>
 

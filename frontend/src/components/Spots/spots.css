@@ -290,6 +290,7 @@
 
 .review-user-div {
     display: flex;
+    align-items: center;
 }
 
 .review-user-name {
@@ -323,4 +324,20 @@
     width: 100%;
     max-width: 350px;
     overflow-wrap: break-word;
+}
+
+.spot-user-delete-button {
+    background-color: #DC0F62;
+    color: white;
+    border: 0px;
+    border-radius: 15px;
+    margin-left: 70px;
+    padding: 10px;
+    height: 35px;
+    /* width: 100%; */
+    /* margin: 0px 0px 30px; */
+}
+
+.spot-user-delete-button:hover {
+    cursor: pointer;
 }
