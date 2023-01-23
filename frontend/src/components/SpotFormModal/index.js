@@ -88,8 +88,18 @@ export default function SpotFormModal() {
             onSubmit={submitHandler}
             className='spot-form-modal'
         >
-            <h2 className="modal-title">Create Spot</h2>
-            <ul>
+            <div className="modal-title-div">
+                <h2 className="modal-title">Create Spot</h2>
+                <span
+                    className="material-symbols-outlined"
+                    onClick={closeModal}
+                >
+                    close
+                </span>
+            </div>
+            <ul
+                className="error-handling"
+            >
                 {errors.map(el => (
                     <li>
                         {el}
@@ -99,7 +109,7 @@ export default function SpotFormModal() {
 
             <div className="spot-form-modal-info">
                 <label>
-                    {'Address: '}
+                    {'Address'}
                 </label>
                 <input
                     type="text"
@@ -112,7 +122,7 @@ export default function SpotFormModal() {
 
             <div className="spot-form-modal-info">
                 <label>
-                    {'City: '}
+                    {'City'}
                 </label>
                 <input
                     type="text"
@@ -124,7 +134,7 @@ export default function SpotFormModal() {
 
             <div className="spot-form-modal-info">
                 <label>
-                    {'State: '}
+                    {'State'}
                 </label>
                 <input
                     type="text"
@@ -136,7 +146,7 @@ export default function SpotFormModal() {
 
             <div className="spot-form-modal-info">
                 <label>
-                    {'Country: '}
+                    {'Country'}
                 </label>
                 <input
                     type="text"
@@ -172,7 +182,7 @@ export default function SpotFormModal() {
 
             <div className="spot-form-modal-info">
                 <label>
-                    {'Name: '}
+                    {'Name'}
                 </label>
                 <input
                     type="text"
@@ -185,7 +195,7 @@ export default function SpotFormModal() {
 
             <div className="spot-form-modal-info">
                 <label>
-                    {'Description: '}
+                    {'Description'}
                 </label>
                 <textarea
                     type="text"
@@ -197,7 +207,7 @@ export default function SpotFormModal() {
 
             <div className="spot-form-modal-info">
                 <label>
-                    {'Price: '}
+                    {'Price'}
                 </label>
                 <input
                     type="number"
@@ -209,7 +219,7 @@ export default function SpotFormModal() {
 
             <div className="spot-form-modal-info">
                 <label>
-                    {'URL: '}
+                    {'URL'}
                 </label>
                 <input
                     type="url"
@@ -222,7 +232,7 @@ export default function SpotFormModal() {
             <div className="modal-buttons-div">
                 <button
                     type='submit'
-                    className="spot-form-modal-buttons"
+                    className={`spot-form-modal-buttons ${!!errors.length}`}
                     disabled={!!errors.length}
                 >
                     Submit

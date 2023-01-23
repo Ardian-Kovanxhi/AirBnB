@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import { demoUserLogin } from '../../store/session';
 import OpenModalButton from '../OpenModalButton';
@@ -9,6 +10,7 @@ import "./LoginForm.css";
 
 function LoginFormModal() {
     const dispatch = useDispatch();
+    const history = useHistory();
     const [credential, setCredential] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
@@ -29,7 +31,15 @@ function LoginFormModal() {
 
     return (
         <div className="log-in-modal-div">
-            <h1>Log In</h1>
+            <div className='modal-title-div'>
+                <h1>Log In</h1>
+                <span
+                    className="material-symbols-outlined"
+                    onClick={closeModal}
+                >
+                    close
+                </span>
+            </div>
             <form
                 onSubmit={handleSubmit}
                 className='log-in-form'
@@ -41,7 +51,7 @@ function LoginFormModal() {
                     ))}
                 </ul>
 
-                <div>
+                <div className="spot-form-modal-info userName log-in">
                     <label>
                         Username or Email
                     </label>
@@ -53,7 +63,7 @@ function LoginFormModal() {
                     />
                 </div>
 
-                <div>
+                <div className="spot-form-modal-info password log-in">
                     <label>
                         Password
                     </label>
@@ -64,18 +74,36 @@ function LoginFormModal() {
                         required
                     />
                 </div>
-                <button type="submit">Log In</button>
+
+                <button
+                    type="submit"
+                    className="log-in-button"
+                >
+                    Log In
+                </button>
                 <button
                     onClick={() => {
                         dispatch(demoUserLogin());
                         closeModal()
                     }}
-                    className="dropdown-info"
+                    className="demo-user-button"
                 >
                     Demo User
                 </button>
             </form>
-        </div>
+            <div
+                onClick={() => window.location.replace('https://github.com/Ardian-Kovanxhi')}
+                className="github-redirect"
+            >
+                <i className="fa fa-github"></i>
+                <a
+                    href="https://github.com/Ardian-Kovanxhi"
+                    className="github-redirect-link"
+                >
+                    Github
+                </a>
+            </div>
+        </div >
     );
 }
 

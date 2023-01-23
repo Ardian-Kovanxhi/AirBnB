@@ -17,6 +17,13 @@ export default function SelectedSpot() {
     const dispatch = useDispatch();
     const history = useHistory();
     let disabled = false
+    const pfpArr = [
+        'https://t3.ftcdn.net/jpg/02/99/04/20/360_F_299042079_vGBD7wIlSeNl7vOevWHiL93G4koMM967.jpg',
+
+        'https://t4.ftcdn.net/jpg/03/83/25/83/360_F_383258331_D8imaEMl8Q3lf7EKU2Pi78Cn0R7KkW9o.jpg',
+
+        'https://image.shutterstock.com/image-photo/stock-photo-handsome-unshaven-young-dark-skinned-male-laughing-out-loud-at-funny-meme-he-found-on-internet-250nw-640011838.jpg'
+    ]
 
     const { spotId } = useParams();
     const Spot = useSelector(state => state.spots.singleSpot);
@@ -80,7 +87,9 @@ export default function SelectedSpot() {
 
 
     return (
-        <div>
+        <div
+            className="single-spot-master-div"
+        >
 
             <div className="single-spot-div">
 
@@ -245,13 +254,47 @@ export default function SelectedSpot() {
 
             </div>
 
-            <div>
+            <div
+                className="spot-reviews-div"
+            >
                 {
                     reviewArr.map(el => (
-                        <div>
-                            <p>
-                                {el.review}
-                            </p>
+                        <div
+                            className="spot-reviews"
+                        >
+
+                            <div
+                                className="review-user-div"
+                            >
+
+                                <div
+                                    className="review-pfp-div"
+                                >
+                                    <img
+                                        className="review-pfp"
+                                        src={pfpArr[Math.floor(Math.random() * 3)]}
+                                    />
+
+                                </div>
+
+                                <p
+                                    className="review-user-name"
+                                >
+                                    {el.User.firstName}
+                                </p>
+
+                            </div>
+
+                            <div
+                                className="review-info"
+                            >
+
+                                <p
+                                    className="review-actual"
+                                >
+                                    {el.review}
+                                </p>
+                            </div>
                         </div>
                     ))
                 }

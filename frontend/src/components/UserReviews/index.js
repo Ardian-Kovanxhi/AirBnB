@@ -29,22 +29,30 @@ export default function UserReviews() {
     }
 
     return (
-        <div className="filler-span">
+        <div className="user-review-master-div">
             {
-                reviews.map(el => {
-                    return (
-                        <div>
-                            <div className="test">
-                                {el.review}
+                reviews.length ?
+                    reviews.map(el => {
+                        return (
+                            <div>
+                                <div>
+                                    Spot: {el.Spot.name}
+                                </div>
+                                <div>
+                                    Stars: {el.stars}
+                                </div>
+                                <div>
+                                    Review: {el.review}
+                                </div>
+                                <button
+                                    onClick={() => deleteHandler(el.id)}
+                                >
+                                    Delete
+                                </button>
                             </div>
-                            <button
-                                onClick={() => deleteHandler(el.id)}
-                            >
-                                Delete
-                            </button>
-                        </div>
-                    )
-                })
+                        )
+                    }) :
+                    <h2>You have no reviews</h2>
             }
         </div>
     )

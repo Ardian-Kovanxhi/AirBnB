@@ -1,3 +1,5 @@
-.filler-span {
-    margin-top: 200px;
+.user-review-master-div {
+    margin-top: 20vh;
+    width: 500px;
+    overflow-wrap: break-word;
 }

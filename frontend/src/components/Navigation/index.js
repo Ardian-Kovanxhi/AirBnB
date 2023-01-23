@@ -1,9 +1,10 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import OpenModalMenuItem from './OpenModalMenuItem';
 import ProfileButton from './ProfileButton';
-import OpenModalButton from '../OpenModalButton';
 import SpotFormModal from '../SpotFormModal';
+import LoginFormModal from '../LoginFormModal';
 import logo from '../../images/mogusBnB.png'
 import './Navigation.css';
 
@@ -28,7 +29,22 @@ function Navigation({ isLoaded }) {
                 <div
                     className='nav-options-div'
                 >
-                    <div>BnB your home</div>
+                    <div className='bnb-your-home'>
+                        {
+                            sessionUser ?
+                                <OpenModalMenuItem
+                                    itemText="ArdianBnB your home"
+                                    // onItemClick={closeMenu}
+                                    modalComponent={<SpotFormModal />}
+                                />
+                                :
+                                <OpenModalMenuItem
+                                    itemText="ArdianBnB your home"
+                                    // onItemClick={closeMenu}
+                                    modalComponent={<LoginFormModal />}
+                                />
+                        }
+                    </div>
                     <div className='profile-button'>
                         <ProfileButton user={sessionUser} />
                     </div>

@@ -15,14 +15,26 @@
 .nav-options-div {
     display: flex;
     width: 100%;
-    max-width: 250px;
+    max-width: 300px;
     justify-content: space-between;
     align-items: center;
+}
+
+.bnb-your-home {
+    padding: 10px;
+    margin-right: 10px;
+}
+
+.bnb-your-home:hover {
+    cursor: pointer;
+    background-color: #F7F7F7;
+    border-radius: 15px;
 }
 
 .BnB-title {
     display: flex;
     align-items: center;
+    color: #FF385C;
     font-size: x-large;
     cursor: pointer;
 }
@@ -47,14 +59,16 @@
     border: 0px;
 }
 
+.profile-button-actual:hover {
+    cursor: pointer;
+}
+
 .create-spot-button {
     background-color: white;
     border: 0px;
     width: 100%;
     padding: 0px;
 }
-
-/* .BnB-title:hover {} */
 
 .mogus-icon {
     margin: 5px;
@@ -63,10 +77,10 @@
 }
 
 .profile-dropdown {
-    width: 150px;
+    width: 250px;
     height: fit-content;
     margin-top: 35px;
-    margin-right: 100px;
+    margin-right: 190px;
     position: absolute;
     background-color: white;
     border: lightgray 1px solid;
@@ -86,12 +100,12 @@
 }
 
 .open-modal-button.Create.Spot:hover {
-    background-color: lightgray;
+    background-color: #F7F7F7;
     cursor: pointer;
 }
 
 .dropdown-info:hover {
-    background-color: lightgray;
+    background-color: #F7F7F7;
     cursor: pointer;
 }
 
