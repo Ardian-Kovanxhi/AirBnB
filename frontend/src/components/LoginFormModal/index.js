@@ -96,7 +96,7 @@ function LoginFormModal() {
                     Demo User
                 </button>
             </form>
-            {/* <div
+            <div
                 onClick={() => window.location.replace('https://github.com/Ardian-Kovanxhi')}
                 className="github-redirect"
             >
@@ -107,7 +107,7 @@ function LoginFormModal() {
                 >
                     Github
                 </a>
-            </div> */}
+            </div>
         </div >
     );
 }

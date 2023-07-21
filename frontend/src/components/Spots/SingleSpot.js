@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Calendar, DateRangePicker, DateRange } from 'react-date-range';
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { getSpot, removeSpot } from '../../store/spots';
@@ -11,6 +12,8 @@ import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import SpotEditModal from "../SpotEditModal";
 import ReviewFormModal from "../ReviewFormModal";
 import './spots.css'
+import 'react-date-range/dist/styles.css'; // main style file
+import 'react-date-range/dist/theme/default.css'; // theme css file
 
 
 export default function SelectedSpot() {
@@ -312,6 +315,10 @@ export default function SelectedSpot() {
                     ))
                 }
             </div>
+
+            {/* <Calendar /> */}
+            {/* <DateRangePicker /> */}
+            <DateRange />
 
         </div>
 

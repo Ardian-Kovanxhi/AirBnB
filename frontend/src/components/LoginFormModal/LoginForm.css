@@ -18,6 +18,11 @@
     border: 0px;
     background-color: #DC0F62;
     color: white;
+    transition: background-color 1s;
+}
+
+.log-in-button:hover {
+    background-color: #E51E50;
 }
 
 .spot-form-modal-info.log-in {
@@ -33,6 +38,11 @@
     border: 0px;
     background-color: #DC0F62;
     color: white;
+    transition: background-color 1s;
+}
+
+.demo-user-button:hover {
+    background-color: #E51E50;
 }
 
 .log-in-form {
@@ -40,7 +50,7 @@
     flex-direction: column;
     align-items: center;
     padding-bottom: 20px;
-    /* border-bottom: 1px lightgray solid; */
+    border-bottom: 1px lightgray solid;
     margin-bottom: 20px;
 }
 
@@ -52,16 +62,31 @@
     text-decoration: none;
     border: 1px black solid;
     border-radius: 10px;
-    padding: 10px 0px;
+    /* padding: 10px 0px; */
+    transition: background-color 1s, color 1s;
 }
 
+.github-redirect:hover {
+    background-color: black;
+    color: white;
+}
+
+
+
 .github-redirect-link {
+    position: absolute;
     text-decoration: none;
     color: black;
-    padding: 5px 190px;
+    padding: 15px 225px;
+    transition: color 1s;
+}
+
+.github-redirect-link:hover {
+    color: white;
 }
 
 .fa-github {
+    padding: 10px 0px;
     padding-left: 10px;
     font-size: 30px;
 }
