@@ -318,7 +318,7 @@ export default function SelectedSpot() {
 
             {/* <Calendar /> */}
             {/* <DateRangePicker /> */}
-            <DateRange />
+            {/* <DateRange /> */}
 
         </div>
 
